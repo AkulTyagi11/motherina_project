@@ -28,13 +28,13 @@ const Header = () => {
             </div>
             <div>
               <h1 className="text-xl font-serif font-semibold text-soft-brown">Shalinta Tyagi</h1>
-              <p className="text-sm text-warm-gray">Maternal Wellness</p>
+              <p className="text-sm text-warm-gray">Maternal Wellness Instructor</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           {/* Hidden on mobile, visible as flex (row) on md and up */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -54,7 +54,7 @@ const Header = () => {
           {/* Hidden on mobile, visible as inline-flex on md and up */}
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center px-6 py-2 bg-soft-pink text-soft-brown text-sm font-medium rounded-full hover:bg-peach transition-colors duration-300 hover:shadow-lg transform hover:-translate-y-0.5"
+            className="hidden lg:flex items-center px-6 py-2 bg-soft-pink text-soft-brown text-sm font-medium rounded-full hover:bg-peach transition-colors duration-300 hover:shadow-lg transform hover:-translate-y-0.5"
           >
             Book Appointment
           </Link>
@@ -63,7 +63,7 @@ const Header = () => {
           {/* Visible as inline-flex on mobile, hidden on md and up */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="inline-flex md:hidden p-2 text-warm-gray hover:text-soft-brown transition-colors duration-200"
+            className="inline-flex lg:hidden p-2 text-warm-gray hover:text-soft-brown transition-colors duration-200"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

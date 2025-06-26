@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,cjs,json}'],
   theme: {
     screens: {
       sm: '640px',
@@ -14,7 +14,7 @@ export default {
         'peach': '#FFEEE6',
         'soft-pink': '#F8D7DA',
         'sage-beige': '#F5F1EB',
-        'lavender': '#E8E5F3',
+        'lavender': '#E8E5F3',  
         'warm-gray': '#6B7280',
         'soft-brown': '#92796A',
       },
@@ -44,3 +44,4 @@ export default {
   },
   plugins: [],
 };
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Heart, Mail, Clock } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,7 +15,7 @@ const Footer = () => {
               </div>
               <div>
                 <h2 className="text-lg font-serif font-semibold text-soft-brown">Shalinta Tyagi</h2>
-                <p className="text-sm text-warm-gray">Maternal Wellness</p>
+                <p className="text-sm text-warm-gray">Maternal Wellness Instructor</p>
               </div>
             </Link>
             <p className="text-warm-gray text-sm max-w-md leading-relaxed">
@@ -39,14 +39,6 @@ const Footer = () => {
           <div>
             <h3 className="text-soft-brown font-semibold mb-4">Contact</h3>
             <ul className="space-y-3">
-              <li className="flex items-center space-x-2 text-warm-gray text-sm">
-                <MapPin className="h-4 w-4" />
-                <span>123 Wellness Ave, Toronto, ON</span>
-              </li>
-              <li className="flex items-center space-x-2 text-warm-gray text-sm">
-                <Phone className="h-4 w-4" />
-                <span>(416) 555-0123</span>
-              </li>
               <li className="flex items-center space-x-2 text-warm-gray text-sm">
                 <Mail className="h-4 w-4" />
                 <span>hello@sarahchenpt.com</span>
