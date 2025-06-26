@@ -1,0 +1,34 @@
+Folder PATH listing for volume OS
+Volume serial number is 38B8-AAFA
+C:.
+¦   .gitignore
+¦   eslint.config.js
+¦   index.html
+¦   package-lock.json
+¦   package.json
+¦   postcss.config.js
+¦   project-structure.txt
+¦   tailwind.config.js
+¦   tsconfig.app.json
+¦   tsconfig.json
+¦   tsconfig.node.json
+¦   vite.config.ts
+¦   
++---src
+    ¦   App.tsx
+    ¦   index.css
+    ¦   main.tsx
+    ¦   vite-env.d.ts
+    ¦   
+    +---components
+    ¦       Footer.tsx
+    ¦       Header.tsx
+    ¦       
+    +---pages
+            About.tsx
+            Contact.tsx
+            FAQ.tsx
+            Home.tsx
+            Services.tsx
+            Testimonials.tsx
+            

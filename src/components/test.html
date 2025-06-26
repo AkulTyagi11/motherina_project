@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind Test</title>
+  
+  <!-- Load Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional: Define custom breakpoints or theme (not needed for this test) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {},
+      },
+    }
+  </script>
+</head>
+<body class="p-10">
+
+  <!-- Element hidden by default, shown on lg screens -->
+  <div class="hidden lg:inline-flex px-4 py-2 bg-green-500 text-white rounded-full">
+    Visible only on large screens (≥1024px)
+  </div>
+
+</body>
+</html>
