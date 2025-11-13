@@ -4,14 +4,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 package-lock.json
-
-# Build outputs
-dist/
-dist-ssr/
-build/
-.vite/
 
 # Environment variables
 .env
@@ -19,40 +12,59 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
-*.local
 
-# Logs
-logs/
-*.log
+# Build outputs
+dist/
+build/
+.vite/
+dist-ssr/
 
-# Editor directories and files
+# IDE and Editor files
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea/
+*.sublime-workspace
+*.sublime-project
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
 *.swp
 *.swo
 *~
+.project
+.classpath
+.settings/
 
 # OS files
 Thumbs.db
 Desktop.ini
+.DS_Store
 ._*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
 
 # Testing
 coverage/
 .nyc_output/
+*.lcov
 
 # Temporary files
 *.tmp
 *.temp
 .cache/
 
-# Production
-/build
+# Local development
+*.local
+
+# Misc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.pnp/
+.pnp.js
