@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { listAppointments, createAppointment, cancelAppointment } from '../controllers/appointmentsController.js';
+import { createAppointment } from '../controllers/appointmentsController.js';
+import { validate } from '../middleware/validate.js';
+import { createAppointmentSchema } from '../validators/schemas.js';
 
 const router = Router();
 
-router.get('/', listAppointments);
-router.post('/', createAppointment);
-router.delete('/:id', cancelAppointment);
+router.post('/', validate(createAppointmentSchema), createAppointment);
 
 export default router;

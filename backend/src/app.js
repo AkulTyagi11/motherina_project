@@ -1,45 +1,59 @@
-// Express application setup
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
-import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import rateLimit from 'express-rate-limit';
+import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
+import availabilityRouter from './routes/availability.routes.js';
+import appointmentsRouter from './routes/appointments.routes.js';
+import authRouter from './routes/auth.routes.js';
+import adminRouter from './routes/admin.routes.js';
 
 dotenv.config();
 
 const app = express();
-
-// Basic security & parsing middleware
 app.use(helmet());
-app.use(cors({ origin: process.env.CORS_ORIGIN?.split(',') || '*', credentials: false }));
-app.use(express.json());
+app.use(express.json({ limit: '1mb' }));
+app.use((req, res, next) => {
+	if (req.body) mongoSanitize.sanitize(req.body);
+	if (req.params) mongoSanitize.sanitize(req.params);
+	if (req.query) mongoSanitize.sanitize(req.query);
+	next();
+});
 
-// Rate limiting (generic sensible defaults)
-const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 200 });
+const corsOrigins = (process.env.CORS_ORIGINS || process.env.CORS_ORIGIN || '').split(',').map(s => s.trim()).filter(Boolean);
+const corsOptions = {
+	origin: corsOrigins.length ? corsOrigins : true,
+	credentials: true,
+};
+app.use(cors(corsOptions));
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000,
+	max: process.env.NODE_ENV === 'production' ? 100 : 1000,
+	message: 'Too many requests, please try again later.'
+});
 app.use('/api/', limiter);
 
-// Health check
-app.get('/health', (_req, res) => {
-	res.json({ status: 'ok', timestamp: Date.now() });
+// Example health route
+app.get('/api/health', (req, res) => res.json({ ok: true }));
+
+app.use('/api/availability', availabilityRouter);
+app.use('/api/appointments', appointmentsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/admin', adminRouter);
+
+app.use('/api', (req, res) => {
+	res.status(404).json({ error: 'API route not found' });
 });
 
-// Routes (mounted later after route files exist)
-import availabilityRoutes from './routes/availability.routes.js';
-import appointmentRoutes from './routes/appointments.routes.js';
-
-app.use('/api/availability', availabilityRoutes);
-app.use('/api/appointments', appointmentRoutes);
-
-// Not found handler
-app.use((req, res) => {
-	res.status(404).json({ error: 'Not found' });
-});
-
-// Error handler
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err, _req, res, _next) => {
-	console.error('Error:', err); // minimal logging
-	res.status(err.status || 500).json({ error: err.message || 'Server error' });
+app.use((err, req, res, next) => {
+	console.error(err);
+	if (res.headersSent) return next(err);
+	res.status(err.status || 500).json({
+		error: err.message || 'Internal server error',
+	});
 });
 
 export default app;

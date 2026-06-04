@@ -9,8 +9,10 @@ const availabilitySchema = new Schema(
     startTime: { type: Date, required: true },
     endTime: { type: Date, required: true },
     slotDurationMinutes: { type: Number, default: 30, min: 5 },
+    timezone: { type: String, default: 'Asia/Kolkata', trim: true },
     isRecurring: { type: Boolean, default: false },
     recurrenceRule: { type: String }, // e.g. RFC 5545 RRULE string ("FREQ=WEEKLY;BYDAY=MO,WE,FR")
+    recurrenceEndDate: { type: Date },
     exceptions: [{ type: Date }], // Dates excluded from recurrence
     isActive: { type: Boolean, default: true },
   },
@@ -26,5 +28,6 @@ availabilitySchema.pre('save', function (next) {
 
 availabilitySchema.index({ date: 1, startTime: 1, endTime: 1 });
 availabilitySchema.index({ practitionerId: 1 });
+availabilitySchema.index({ isActive: 1, isRecurring: 1, startTime: 1, recurrenceEndDate: 1 });
 
 export default mongoose.model('Availability', availabilitySchema);

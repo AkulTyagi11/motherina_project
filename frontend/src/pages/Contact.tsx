@@ -8,6 +8,13 @@ interface Slot {
   end: string;
 }
 
+const formatLocalDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const Contact = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -45,7 +52,7 @@ const Contact = () => {
     setLoadingSlots(true);
     setError(null);
     try {
-      const dateStr = date.toISOString().substring(0, 10);
+      const dateStr = formatLocalDate(date);
       const response = await fetch(`${API_BASE}/availability/slots?date=${dateStr}`);
       if (!response.ok) throw new Error('Failed to fetch slots');
       const data = await response.json();

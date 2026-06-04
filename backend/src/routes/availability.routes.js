@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { createAvailability, listAvailability, getSlots } from '../controllers/availabilityController.js';
+import { getSlots } from '../controllers/availabilityController.js';
+import { validate } from '../middleware/validate.js';
+import { slotsQuerySchema } from '../validators/schemas.js';
 
 const router = Router();
 
-router.get('/', listAvailability);
-router.post('/', createAvailability);
-router.get('/slots', getSlots);
+router.get('/slots', validate(slotsQuerySchema, 'query'), getSlots);
 
 export default router;

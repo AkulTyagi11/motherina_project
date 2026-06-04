@@ -25,7 +25,9 @@ npm install
 3. Configure environment variables:
    - Copy `.env.example` to `.env`
    - Update `MONGODB_URI` with your MongoDB connection string
-   - Set `CORS_ORIGIN` to include your frontend URL
+   - Set `CORS_ORIGINS` to include your frontend URL
+   - Set `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` for admin login
+   - Configure SMTP variables if you want confirmation/cancellation emails
    - (Optional) Configure Google Calendar integration
 
 4. Start the development server:
@@ -66,18 +68,26 @@ The frontend will run on `http://localhost:5173` by default.
 - Real-time slot availability checking
 - Instant appointment confirmation
 - Optional Google Calendar synchronization
+- Admin availability and appointment management
+- Recurring availability with exception dates
+- Email confirmations and cancellation notifications
 
 ### API Endpoints
 
 #### Availability
-- `GET /api/availability` - List availability schedules
-- `POST /api/availability` - Create availability schedule
 - `GET /api/availability/slots?date=YYYY-MM-DD` - Get available slots for a date
 
 #### Appointments
-- `GET /api/appointments` - List appointments
 - `POST /api/appointments` - Create new appointment
-- `DELETE /api/appointments/:id` - Cancel appointment
+
+#### Auth/Admin
+- `POST /api/auth/login` - Admin login
+- `GET /api/admin/availability` - List availability schedules
+- `POST /api/admin/availability` - Create availability schedule
+- `PATCH /api/admin/availability/:id` - Update availability schedule
+- `DELETE /api/admin/availability/:id` - Deactivate availability schedule
+- `GET /api/admin/appointments` - List appointments
+- `POST /api/admin/appointments/:id/cancel` - Cancel appointment
 
 ## Environment Variables
 
@@ -87,7 +97,17 @@ The frontend will run on `http://localhost:5173` by default.
 |----------|----------|-------------|
 | `MONGODB_URI` | Yes | MongoDB connection string |
 | `PORT` | No | Server port (default: 3000) |
-| `CORS_ORIGIN` | Yes | Comma-separated allowed origins |
+| `CORS_ORIGINS` | Yes | Comma-separated allowed origins |
+| `APP_TIMEZONE` | No | Business timezone for scheduling (default: `Asia/Kolkata`) |
+| `JWT_SECRET` | Yes | Secret used to sign admin JWTs |
+| `ADMIN_EMAIL` | Yes | First admin account email; bootstrapped on server start |
+| `ADMIN_PASSWORD` | Yes | First admin password; use a strong value in production |
+| `SMTP_HOST` | No | SMTP host for booking/cancellation emails |
+| `SMTP_PORT` | No | SMTP port (default: 587) |
+| `SMTP_USER` | No | SMTP username |
+| `SMTP_PASS` | No | SMTP password |
+| `SMTP_FROM` | No | From address for transactional emails |
+| `CLINIC_NOTIFICATION_EMAIL` | No | Clinic/staff notification recipient |
 | `GOOGLE_CALENDAR_ENABLED` | No | Enable Google Calendar sync (true/false) |
 | `GOOGLE_CLIENT_EMAIL` | No* | Service account email |
 | `GOOGLE_PRIVATE_KEY` | No* | Service account private key |
@@ -123,6 +143,8 @@ To enable automatic calendar synchronization:
 
 ### Frontend (GitHub Pages)
 
+The frontend uses `HashRouter` and Vite `base: '/motherina_project/'`, so deep links work on GitHub Pages without a custom SPA fallback.
+
 ```bash
 cd frontend
 npm run deploy
@@ -138,18 +160,36 @@ Ensure environment variables are configured in your hosting environment.
 
 ### Creating Availability Schedules
 
-Use the POST endpoint to create availability:
+Log in as admin first, then use the returned token to create availability:
 
 ```bash
-curl -X POST http://localhost:3000/api/availability \
+TOKEN=$(curl -s -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","password":"password123"}' | jq -r .token)
+
+curl -X POST http://localhost:3000/api/admin/availability \
+  -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "date": "2025-11-25",
-    "startTime": "2025-11-25T09:00:00Z",
-    "endTime": "2025-11-25T17:00:00Z",
+    "startTime": "09:00",
+    "endTime": "17:00",
     "slotDurationMinutes": 30,
+    "isRecurring": true,
+    "recurrenceRule": "FREQ=WEEKLY;BYDAY=MO,WE,FR",
+    "exceptions": ["2025-12-25"],
     "isActive": true
   }'
+```
+
+### Tests
+
+```bash
+cd backend
+npm test
+
+cd ../frontend
+npm run build
 ```
 
 ## Tech Stack
@@ -169,6 +209,11 @@ curl -X POST http://localhost:3000/api/availability \
 - Helmet (security)
 - CORS
 - express-rate-limit
+- express-mongo-sanitize
+- Joi
+- Luxon
+- RRule
+- Nodemailer
 - googleapis (Google Calendar API)
 - dotenv
 
@@ -178,4 +223,4 @@ ISC
 
 ## Contact
 
-For questions or support, contact: hello@shalinta.com
+For questions or support, contact: akultyagi2304@gmail.com

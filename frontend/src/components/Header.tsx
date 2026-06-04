@@ -27,7 +27,7 @@ const Header = () => {
               <Heart className="w-6 h-6 text-soft-brown" />
             </div>
             <div>
-              <h1 className="font-serif text-xl font-semibold text-soft-brown">Shalinta Tyagi</h1>
+              <h1 className="font-serif text-xl font-semibold text-soft-brown">Dr. Shalinta Tyagi</h1>
               <p className="text-sm text-warm-gray">Maternal Wellness Instructor</p>
             </div>
           </Link>

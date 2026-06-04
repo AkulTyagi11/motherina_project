@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import app from './app.js';
+import { bootstrapAdminUser } from './services/bootstrapAdmin.js';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ async function start() {
 	try {
 		await mongoose.connect(MONGODB_URI);
 		console.log('MongoDB connected');
+		await bootstrapAdminUser();
 		app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 	} catch (err) {
 		console.error('Startup error:', err);
