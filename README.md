@@ -6,6 +6,7 @@ Full-stack appointment booking application for maternal wellness services.
 
 - **Frontend**: React + TypeScript + Vite + TailwindCSS
 - **Backend**: Node.js + Express + MongoDB
+- **Booking Engine**: Cal.com (embedded on frontend, syncing via webhooks to backend)
 - **Deployment**: GitHub Pages (frontend), self-hosted (backend)
 
 ## Getting Started
@@ -27,8 +28,7 @@ npm install
    - Update `MONGODB_URI` with your MongoDB connection string
    - Set `CORS_ORIGINS` to include your frontend URL
    - Set `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` for admin login
-   - Configure SMTP variables if you want confirmation/cancellation emails
-   - (Optional) Configure Google Calendar integration
+   - Configure SMTP variables if you want confirmation/cancellation emails sent from your own server (Cal.com also sends its own emails).
 
 4. Start the development server:
 ```bash
@@ -64,30 +64,22 @@ The frontend will run on `http://localhost:5173` by default.
 ## Features
 
 ### Booking System
-- Interactive calendar interface
-- Real-time slot availability checking
+- Interactive booking interface powered by **Cal.com**
+- Real-time slot availability checking via Cal.com
 - Instant appointment confirmation
-- Optional Google Calendar synchronization
-- Admin availability and appointment management
-- Recurring availability with exception dates
+- Admin appointment viewing via a custom React Dashboard
+- Webhook-driven synchronization between Cal.com and local MongoDB
 - Email confirmations and cancellation notifications
 
 ### API Endpoints
 
-#### Availability
-- `GET /api/availability/slots?date=YYYY-MM-DD` - Get available slots for a date
-
 #### Appointments
-- `POST /api/appointments` - Create new appointment
+- `GET /api/admin/appointments` - List appointments
+- `POST /api/admin/appointments/:id/cancel` - Cancel appointment (local DB only)
+- `POST /api/appointments/webhook/calcom` - Webhook receiver for Cal.com `BOOKING_CREATED` and `BOOKING_CANCELLED` events
 
 #### Auth/Admin
 - `POST /api/auth/login` - Admin login
-- `GET /api/admin/availability` - List availability schedules
-- `POST /api/admin/availability` - Create availability schedule
-- `PATCH /api/admin/availability/:id` - Update availability schedule
-- `DELETE /api/admin/availability/:id` - Deactivate availability schedule
-- `GET /api/admin/appointments` - List appointments
-- `POST /api/admin/appointments/:id/cancel` - Cancel appointment
 
 ## Environment Variables
 
@@ -98,7 +90,7 @@ The frontend will run on `http://localhost:5173` by default.
 | `MONGODB_URI` | Yes | MongoDB connection string |
 | `PORT` | No | Server port (default: 3000) |
 | `CORS_ORIGINS` | Yes | Comma-separated allowed origins |
-| `APP_TIMEZONE` | No | Business timezone for scheduling (default: `Asia/Kolkata`) |
+| `APP_TIMEZONE` | No | Business timezone for filtering local appointments (default: `Asia/Kolkata`) |
 | `JWT_SECRET` | Yes | Secret used to sign admin JWTs |
 | `ADMIN_EMAIL` | Yes | First admin account email; bootstrapped on server start |
 | `ADMIN_PASSWORD` | Yes | First admin password; use a strong value in production |
@@ -108,36 +100,12 @@ The frontend will run on `http://localhost:5173` by default.
 | `SMTP_PASS` | No | SMTP password |
 | `SMTP_FROM` | No | From address for transactional emails |
 | `CLINIC_NOTIFICATION_EMAIL` | No | Clinic/staff notification recipient |
-| `GOOGLE_CALENDAR_ENABLED` | No | Enable Google Calendar sync (true/false) |
-| `GOOGLE_CLIENT_EMAIL` | No* | Service account email |
-| `GOOGLE_PRIVATE_KEY` | No* | Service account private key |
-| `GOOGLE_CALENDAR_ID` | No* | Target calendar ID |
-
-*Required only if `GOOGLE_CALENDAR_ENABLED=true`
 
 ### Frontend (.env.local)
 
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `VITE_API_BASE_URL` | Yes | Backend API base URL |
-
-## Google Calendar Integration (Optional)
-
-To enable automatic calendar synchronization:
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com)
-2. Create a new project or select existing
-3. Enable Google Calendar API
-4. Create a service account:
-   - Navigate to IAM & Admin → Service Accounts
-   - Click "Create Service Account"
-   - Download JSON key file
-5. Share your Google Calendar with the service account email
-6. Update backend `.env`:
-   - Set `GOOGLE_CALENDAR_ENABLED=true`
-   - Copy `client_email` to `GOOGLE_CLIENT_EMAIL`
-   - Copy `private_key` to `GOOGLE_PRIVATE_KEY` (keep `\n` as literal `\\n`)
-   - Set `GOOGLE_CALENDAR_ID` (use `primary` for main calendar)
 
 ## Deployment
 
@@ -153,44 +121,13 @@ npm run deploy
 ### Backend
 
 Deploy to your preferred Node.js hosting platform (Heroku, Railway, DigitalOcean, etc.)
-
 Ensure environment variables are configured in your hosting environment.
 
-## Development
-
-### Creating Availability Schedules
-
-Log in as admin first, then use the returned token to create availability:
-
-```bash
-TOKEN=$(curl -s -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@example.com","password":"password123"}' | jq -r .token)
-
-curl -X POST http://localhost:3000/api/admin/availability \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "date": "2025-11-25",
-    "startTime": "09:00",
-    "endTime": "17:00",
-    "slotDurationMinutes": 30,
-    "isRecurring": true,
-    "recurrenceRule": "FREQ=WEEKLY;BYDAY=MO,WE,FR",
-    "exceptions": ["2025-12-25"],
-    "isActive": true
-  }'
-```
-
-### Tests
-
-```bash
-cd backend
-npm test
-
-cd ../frontend
-npm run build
-```
+### Cal.com Setup
+1. Create a free account at [Cal.com](https://cal.com).
+2. Set up your availability and event types.
+3. Update `calLink="your-username/your-event"` in `frontend/src/pages/Contact.tsx`.
+4. Add a Webhook in the Cal.com dashboard pointing to `https://your-backend-url.com/api/appointments/webhook/calcom` listening for `BOOKING_CREATED` and `BOOKING_CANCELLED`.
 
 ## Tech Stack
 
@@ -201,6 +138,7 @@ npm run build
 - TailwindCSS
 - React Router DOM
 - Lucide React (icons)
+- Cal.com Embed React
 
 **Backend:**
 - Node.js (ES Modules)
@@ -212,9 +150,7 @@ npm run build
 - express-mongo-sanitize
 - Joi
 - Luxon
-- RRule
 - Nodemailer
-- googleapis (Google Calendar API)
 - dotenv
 
 ## License

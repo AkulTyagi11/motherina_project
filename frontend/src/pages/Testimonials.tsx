@@ -1,37 +1,38 @@
 import { Star, Quote, Heart, Baby, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
   const testimonials = [
     {
       name: "Emily Johnson",
       service: "Women's Health Physiotherapy",
-      text: "Sarah's expertise and compassionate care made my recovery journey so much smoother. After struggling with pelvic floor issues postpartum, she helped me regain my confidence and strength. Her personalized approach and genuine care made all the difference.",
+      text: "Shalinta's expertise and compassionate care made my recovery journey so much smoother. After struggling with pelvic floor issues postpartum, she helped me regain my confidence and strength. Her personalized approach and genuine care made all the difference.",
       rating: 5,
       image: "https://images.pexels.com/photos/3985254/pexels-photo-3985254.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Lisa Chen",
       service: "Childbirth Education",
-      text: "The childbirth education classes were incredibly informative and helped me feel prepared and confident for delivery. Sarah's calm presence and thorough explanations eased my anxieties. I felt empowered and ready for birth.",
+      text: "The childbirth education classes were incredibly informative and helped me feel prepared and confident for delivery. Shalinta's calm presence and thorough explanations eased my anxieties. I felt empowered and ready for birth.",
       rating: 5,
       image: "https://images.pexels.com/photos/1556663/pexels-photo-1556663.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Amanda Rodriguez",
       service: "Perinatal Fitness",
-      text: "Professional, knowledgeable, and truly caring. Sarah goes above and beyond for her patients. The prenatal fitness program helped me stay strong throughout pregnancy and bounce back quickly after delivery.",
+      text: "Professional, knowledgeable, and truly caring. Shalinta goes above and beyond for her patients. The prenatal fitness program helped me stay strong throughout pregnancy and bounce back quickly after delivery.",
       rating: 5,
       image: "https://images.pexels.com/photos/3984340/pexels-photo-3984340.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Jennifer Kim",
       service: "Lactation Counselling",
-      text: "I was struggling with breastfeeding and felt overwhelmed. Sarah's lactation counselling gave me the tools and confidence I needed. Her patient guidance made all the difference in our nursing journey.",
+      text: "I was struggling with breastfeeding and felt overwhelmed. Shalinta's lactation counselling gave me the tools and confidence I needed. Her patient guidance made all the difference in our nursing journey.",
       rating: 5,
       image: "https://images.pexels.com/photos/3985244/pexels-photo-3985244.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Sarah Mitchell",
+      name: "Shalinta Mitchell",
       service: "Hypnobirthing",
       text: "The hypnobirthing course transformed my perspective on childbirth. I went from being terrified to feeling excited and confident. The relaxation techniques were invaluable during labor.",
       rating: 5,
@@ -40,28 +41,28 @@ const Testimonials = () => {
     {
       name: "Maria Santos",
       service: "Women's Health Physiotherapy",
-      text: "After my second baby, I thought incontinence was just something I'd have to live with. Sarah proved me wrong! Her treatment plan was effective and her approach was so understanding and professional.",
+      text: "After my second baby, I thought incontinence was just something I'd have to live with. Shalinta proved me wrong! Her treatment plan was effective and her approach was so understanding and professional.",
       rating: 5,
       image: "https://images.pexels.com/photos/1560159/pexels-photo-1560159.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Rachel Thompson",
       service: "Perinatal Fitness",
-      text: "Sarah helped me maintain my fitness throughout pregnancy and guided my return to exercise postpartum. Her knowledge of the female body and pregnancy-specific needs is exceptional.",
+      text: "Shalinta helped me maintain my fitness throughout pregnancy and guided my return to exercise postpartum. Her knowledge of the female body and pregnancy-specific needs is exceptional.",
       rating: 5,
       image: "https://images.pexels.com/photos/5407206/pexels-photo-5407206.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Priya Patel",
       service: "Childbirth Education",
-      text: "As a first-time mom, I had so many questions and fears. Sarah's childbirth education classes addressed everything with patience and expertise. I felt so much more prepared and confident.",
+      text: "As a first-time mom, I had so many questions and fears. Shalinta's childbirth education classes addressed everything with patience and expertise. I felt so much more prepared and confident.",
       rating: 5,
       image: "https://images.pexels.com/photos/3985254/pexels-photo-3985254.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       name: "Nicole Brown",
       service: "Hypnobirthing",
-      text: "The hypnobirthing techniques Sarah taught me helped me have the calm, positive birth experience I dreamed of. I highly recommend her classes to any expecting mother.",
+      text: "The hypnobirthing techniques Shalinta taught me helped me have the calm, positive birth experience I dreamed of. I highly recommend her classes to any expecting mother.",
       rating: 5,
       image: "https://images.pexels.com/photos/1556663/pexels-photo-1556663.jpeg?auto=compress&cs=tinysrgb&w=400"
     }
@@ -169,7 +170,7 @@ const Testimonials = () => {
           <div className="p-8 text-center bg-gradient-to-r from-soft-pink to-peach rounded-3xl md:p-12">
             <Quote className="w-16 h-16 mx-auto mb-6 text-soft-brown" />
             <blockquote className="mb-8 font-serif text-2xl leading-relaxed md:text-3xl text-soft-brown">
-              "Sarah didn't just treat my symptoms; she empowered me to understand my body and 
+              "Shalinta didn't just treat my symptoms; she empowered me to understand my body and 
               take control of my health. Her holistic approach and genuine care transformed my 
               entire experience of motherhood."
             </blockquote>
@@ -198,12 +199,12 @@ const Testimonials = () => {
             Experience the same compassionate, expert care that has helped hundreds of women 
             feel confident and supported throughout their maternal journey.
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-flex items-center px-10 py-4 text-lg font-semibold transition-all duration-300 transform bg-white rounded-full text-soft-brown hover:bg-opacity-90 hover:shadow-xl hover:-translate-y-1"
           >
             Start Your Journey Today
-          </a>
+          </Link>
         </div>
       </section>
     </div>

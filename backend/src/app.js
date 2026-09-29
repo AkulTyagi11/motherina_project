@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
 import helmet from 'helmet';
-import availabilityRouter from './routes/availability.routes.js';
 import appointmentsRouter from './routes/appointments.routes.js';
 import authRouter from './routes/auth.routes.js';
 import adminRouter from './routes/admin.routes.js';
@@ -39,7 +38,6 @@ app.use('/api/', limiter);
 // Example health route
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
-app.use('/api/availability', availabilityRouter);
 app.use('/api/appointments', appointmentsRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);

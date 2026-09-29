@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp, HelpCircle, Baby, Heart, Users, Shield } from 'lucide-react';
 
 const FAQ = () => {
@@ -182,12 +183,12 @@ const FAQ = () => {
               Don't hesitate to reach out for personalized guidance.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center px-8 py-3 font-semibold text-white transition-colors duration-300 rounded-full bg-soft-brown hover:bg-opacity-90"
               >
                 Schedule a Consultation
-              </a>
+              </Link>
               <a
                 href="tel:+14165550123"
                 className="inline-flex items-center px-8 py-3 font-semibold transition-colors duration-300 border-2 rounded-full border-soft-brown text-soft-brown hover:bg-soft-brown hover:text-white"

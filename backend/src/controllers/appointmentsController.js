@@ -1,10 +1,6 @@
 import Appointment from '../models/Appointment.js';
-import Availability from '../models/Availability.js';
-import { generateSlots } from '../utils/slotGenerator.js';
-import { createCalendarEvent, deleteCalendarEvent } from '../services/googleCalendarService.js';
 import { sendBookingEmails, sendCancellationEmails } from '../services/emailService.js';
-import { buildAvailabilityQueryForDate } from './availabilityController.js';
-import { DEFAULT_TIMEZONE, getUtcRangeForLocalDate, toLocalDateString } from '../utils/time.js';
+import { DEFAULT_TIMEZONE, getUtcRangeForLocalDate } from '../utils/time.js';
 
 export async function listAppointments(req, res, next) {
   try {
@@ -22,50 +18,39 @@ export async function listAppointments(req, res, next) {
   }
 }
 
-export async function createAppointment(req, res, next) {
+// Webhook receiver for Cal.com
+export async function calcomWebhook(req, res, next) {
   try {
-    const { clientName, clientEmail, clientPhone, serviceType, notes, startTime, endTime } = req.body;
-
-    const start = new Date(startTime);
-    const end = new Date(endTime);
-    if (!(start < end)) return res.status(400).json({ error: 'Invalid time range' });
-
-    const timezone = process.env.APP_TIMEZONE || DEFAULT_TIMEZONE;
-    const dayDate = toLocalDateString(start, timezone);
-    const { start: dayStart, end: dayEnd } = getUtcRangeForLocalDate(dayDate, timezone);
-    const availabilities = await Availability.find(buildAvailabilityQueryForDate(dayDate, timezone));
-    const appointments = await Appointment.find({
-      startTime: { $lt: dayEnd },
-      endTime: { $gt: dayStart },
-      status: { $ne: 'cancelled' },
-    });
-    const slots = generateSlots({ date: dayDate, availabilities, appointments, timezone });
-    const isSlotValid = slots.some(s => s.start.getTime() === start.getTime() && s.end.getTime() === end.getTime());
-    if (!isSlotValid) return res.status(409).json({ error: 'Slot no longer available' });
-
-    const conflictingAppointment = await Appointment.findOne({
-      startTime: { $lt: end },
-      endTime: { $gt: start },
-      status: { $ne: 'cancelled' },
-    });
-    if (conflictingAppointment) return res.status(409).json({ error: 'Slot no longer available' });
-
-    const appointment = await Appointment.create({ clientName, clientEmail, clientPhone, serviceType, notes, startTime: start, endTime: end, status: 'confirmed', source: 'web' });
-
-    if (process.env.GOOGLE_CALENDAR_ENABLED === 'true') {
-      try {
-        const eventId = await createCalendarEvent(appointment);
-        if (eventId) {
-          appointment.googleCalendarEventId = eventId;
-          await appointment.save();
-        }
-      } catch (e) {
-        console.error('Google Calendar sync failed', e.message);
+    const event = req.body;
+    
+    if (event.triggerEvent === 'BOOKING_CREATED') {
+      const payload = event.payload;
+      
+      const appointment = await Appointment.create({
+        clientName: payload.attendees[0].name,
+        clientEmail: payload.attendees[0].email,
+        clientPhone: payload.responses?.phone || '',
+        serviceType: payload.type || 'Consultation',
+        notes: payload.responses?.notes || '',
+        startTime: new Date(payload.startTime),
+        endTime: new Date(payload.endTime),
+        status: 'confirmed',
+        source: 'calcom',
+        googleCalendarEventId: payload.uid
+      });
+      
+      await sendBookingEmails(appointment);
+    } else if (event.triggerEvent === 'BOOKING_CANCELLED') {
+      const payload = event.payload;
+      const appt = await Appointment.findOne({ googleCalendarEventId: payload.uid });
+      if (appt) {
+        appt.status = 'cancelled';
+        await appt.save();
+        await sendCancellationEmails(appt);
       }
     }
 
-    await sendBookingEmails(appointment);
-    res.status(201).json(appointment);
+    res.status(200).json({ received: true });
   } catch (e) {
     next(e);
   }
@@ -78,10 +63,6 @@ export async function cancelAppointment(req, res, next) {
     if (!appt) return res.status(404).json({ error: 'Not found' });
     appt.status = 'cancelled';
     await appt.save();
-
-    if (process.env.GOOGLE_CALENDAR_ENABLED === 'true' && appt.googleCalendarEventId) {
-      await deleteCalendarEvent(appt.googleCalendarEventId);
-    }
 
     await sendCancellationEmails(appt);
     res.json(appt);

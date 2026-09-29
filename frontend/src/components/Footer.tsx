@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart, Mail, Clock } from 'lucide-react';
+import { Mail, Clock } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,12 +9,10 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center mb-4 space-x-2">
-              <div className="p-2 rounded-full bg-soft-pink">
-                <Heart className="w-6 h-6 text-soft-brown" />
-              </div>
+              <img src="/images/motherina-logo.png" alt="Motherina Logo" className="w-auto h-12" />
               <div>
-                <h2 className="font-serif text-lg font-semibold text-soft-brown">Shalinta Tyagi</h2>
-                <p className="text-sm text-warm-gray">Maternal Wellness Instructor</p>
+                <h2 className="font-serif text-lg font-semibold text-soft-brown">Motherina</h2>
+                <p className="text-sm text-warm-gray">Maternal Wellness</p>
               </div>
             </Link>
             <p className="max-w-md text-sm leading-relaxed text-warm-gray">

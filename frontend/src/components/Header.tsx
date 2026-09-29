@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,12 +23,10 @@ const Header = () => {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="p-2 transition-colors duration-300 rounded-full bg-soft-pink group-hover:bg-peach">
-              <Heart className="w-6 h-6 text-soft-brown" />
-            </div>
-            <div>
-              <h1 className="font-serif text-xl font-semibold text-soft-brown">Dr. Shalinta Tyagi</h1>
-              <p className="text-sm text-warm-gray">Maternal Wellness Instructor</p>
+            <img src="/images/motherina-logo.png" alt="Motherina Logo" className="h-12 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <div className="hidden sm:block">
+              <h1 className="font-serif text-xl font-semibold text-soft-brown">Motherina</h1>
+              <p className="text-sm text-warm-gray">Maternal Wellness</p>
             </div>
           </Link>
 

@@ -12,7 +12,7 @@ const appointmentSchema = new Schema(
     startTime: { type: Date, required: true },
     endTime: { type: Date, required: true },
     status: { type: String, enum: ['pending', 'confirmed', 'cancelled'], default: 'pending' },
-    source: { type: String, enum: ['web', 'google-sync'], default: 'web' },
+    source: { type: String, enum: ['web', 'google-sync', 'calcom'], default: 'web' },
     googleCalendarEventId: { type: String },
   },
   { timestamps: true }

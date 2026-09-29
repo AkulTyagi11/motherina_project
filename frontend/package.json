@@ -1,6 +1,5 @@
 {
   "name": "maternal-wellness-pt",
-  "homepage": "https://akultyagi11.github.io/motherina_project/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -30,6 +30,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^15.9.0",
     "postcss": "^8.5.6",
+    "puppeteer": "^24.43.1",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
