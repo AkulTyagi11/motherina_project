@@ -90,15 +90,11 @@ const Contact = () => {
 
             <div className="w-full min-h-[600px] bg-white rounded-xl overflow-hidden border border-gray-100 shadow-inner">
               <Cal 
-                calLink="https://cal.com/child-birth-education"
+                calLink="dr-shalinta-tyagi"
                 style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }}
                 config={{ layout: 'month_view' }}
               />
             </div>
-            
-            <p className="text-center text-sm text-warm-gray mt-6">
-              Note: Since you haven't provided a Cal.com username yet, this displays a demo calendar. Update <code>calLink="your_username/your_event"</code> in Contact.tsx once your account is ready.
-            </p>
           </div>
         </div>
       </section>
