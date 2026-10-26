@@ -1,8 +1,27 @@
-import React, { useEffect } from 'react';
-import { MapPin, Phone, Mail, Clock, Calendar as CalendarIcon, CheckCircle, Heart } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Clock, 
+  Calendar as CalendarIcon, 
+  CheckCircle, 
+  Video, 
+  Home as HomeIcon,
+  Send,
+  Sparkles
+} from 'lucide-react';
 import Cal, { getCalApi } from "@calcom/embed-react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    comment: ''
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({});
@@ -18,80 +37,114 @@ const Contact = () => {
     })();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+  };
+
   return (
-    <div className="animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-sage-beige/30 via-white to-sage-beige/20 animate-fade-in">
+      {/* Top Tagline Banner */}
+      <div className="bg-soft-brown text-white py-2 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+        "Customized guidance for postpartum care tailored to your unique needs and preferences"
+      </div>
+
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-sage-beige to-peach">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="animate-slide-up">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-soft-brown mb-6">
-              Book Your Appointment
-            </h1>
-            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
-              Ready to start your maternal wellness journey? Schedule your consultation today 
-              and take the first step toward optimal health and well-being.
-            </p>
-          </div>
+      <section className="pt-16 pb-12 bg-gradient-to-br from-sage-beige/40 to-peach/30 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-bold uppercase tracking-widest text-soft-brown mb-2">Connect & Book</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-soft-brown mb-4">
+            Contact & Consultation
+          </h1>
+          <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
+            Book an appointment directly with <strong>Dr. Shalinta Tyagi</strong> via our live scheduler below, or reach out to us for specialized home care in Gurgaon and Delhi NCR.
+          </p>
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-16 bg-white">
+      {/* Modes of Consultation Banner (From M - Contact Us.pdf) */}
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center group">
-              <div className="bg-soft-pink p-4 rounded-full w-16 h-16 mx-auto mb-4 group-hover:bg-peach transition-colors duration-300">
-                <MapPin className="h-8 w-8 text-soft-brown mx-auto" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1: Online */}
+            <div className="p-8 bg-gradient-to-br from-soft-pink/20 to-peach/20 rounded-3xl border border-peach/30 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="p-3.5 bg-white w-fit rounded-2xl text-soft-brown shadow-sm">
+                  <Video className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-xl font-bold text-soft-brown">Online Consultations</h3>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  Available worldwide via Zoom, Google Meet, Skype, and secure video conferencing tools for lactation, diet, and posture guidance.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-soft-brown mb-2">Location</h3>
-              <p className="text-warm-gray">123 Wellness Ave<br />Toronto, ON M5V 2K1</p>
+              <div className="pt-4 text-xs font-semibold text-soft-brown">Worldwide • High Definition Video</div>
             </div>
 
-            <div className="text-center group">
-              <div className="bg-lavender p-4 rounded-full w-16 h-16 mx-auto mb-4 group-hover:bg-soft-pink transition-colors duration-300">
-                <Phone className="h-8 w-8 text-soft-brown mx-auto" />
+            {/* Card 2: In-Person */}
+            <div className="p-8 bg-gradient-to-br from-lavender/30 to-peach/20 rounded-3xl border border-peach/30 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="p-3.5 bg-white w-fit rounded-2xl text-soft-brown shadow-sm">
+                  <HomeIcon className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-xl font-bold text-soft-brown">In-Person Consultations</h3>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  Available at selected partner clinics in Gurgaon, or in the comfort and privacy of your own home (within Delhi NCR).
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-soft-brown mb-2">Phone</h3>
-              <p className="text-warm-gray">(416) 555-0123</p>
+              <div className="pt-4 text-xs font-semibold text-soft-brown">Gurgaon & Delhi NCR • Home Visits</div>
             </div>
 
-            <div className="text-center group">
-              <div className="bg-peach p-4 rounded-full w-16 h-16 mx-auto mb-4 group-hover:bg-lavender transition-colors duration-300">
-                <Mail className="h-8 w-8 text-soft-brown mx-auto" />
+            {/* Card 3: Direct Connect */}
+            <div className="p-8 bg-gradient-to-br from-peach/30 to-sage-beige/30 rounded-3xl border border-peach/30 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="p-3.5 bg-white w-fit rounded-2xl text-soft-brown shadow-sm">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-xl font-bold text-soft-brown">Direct Connect</h3>
+                <div className="space-y-2 text-sm text-warm-gray">
+                  <p className="flex items-center space-x-2">
+                    <span className="font-semibold text-soft-brown">Phone:</span>
+                    <a href="tel:+919873559773" className="hover:underline font-medium">+91 98735 59773</a>
+                  </p>
+                  <p className="flex items-center space-x-2">
+                    <span className="font-semibold text-soft-brown">E-mail:</span>
+                    <a href="mailto:info@motherinacare.com" className="hover:underline font-medium">info@motherinacare.com</a>
+                  </p>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-soft-brown mb-2">Email</h3>
-              <p className="text-warm-gray">hello@shalinta.com</p>
-            </div>
-
-            <div className="text-center group">
-              <div className="bg-sage-beige p-4 rounded-full w-16 h-16 mx-auto mb-4 group-hover:bg-peach transition-colors duration-300">
-                <Clock className="h-8 w-8 text-soft-brown mx-auto" />
-              </div>
-              <h3 className="text-lg font-semibold text-soft-brown mb-2">Hours</h3>
-              <p className="text-warm-gray">Mon-Fri: 9AM-6PM<br />Sat: 9AM-2PM</p>
+              <div className="pt-4 text-xs font-semibold text-soft-brown">Prompt Response • Friendly Staff</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Booking Form via Cal.com */}
-      <section className="py-20 bg-sage-beige">
+      {/* Main Interactive Cal.com Booking Widget */}
+      <section id="booking" className="py-16 bg-sage-beige/30 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl">
-            <div className="text-center mb-8">
-              <CalendarIcon className="h-12 w-12 text-soft-brown mx-auto mb-4" />
-              <h2 className="text-3xl font-serif font-bold text-soft-brown mb-4">
-                Book Your Appointment
+          <div className="bg-white rounded-3xl p-6 md:p-12 shadow-md border border-peach/40">
+            <div className="text-center mb-8 max-w-2xl mx-auto">
+              <div className="p-3 bg-peach/30 w-fit rounded-2xl text-soft-brown mx-auto mb-3">
+                <CalendarIcon className="h-7 w-7" />
+              </div>
+              <h2 className="text-3xl font-serif font-bold text-soft-brown mb-2">
+                Instant Appointment Booking
               </h2>
-              <p className="text-warm-gray mb-8">
-                Select a date and available time slot to schedule your consultation.
+              <p className="text-sm text-warm-gray">
+                Select your desired service, choose an available time slot directly synced with Dr. Shalinta's calendar, and receive immediate email confirmation.
               </p>
             </div>
 
-            <div className="w-full min-h-[600px] bg-white rounded-xl overflow-hidden border border-gray-100 shadow-inner">
+            <div className="w-full min-h-[620px] bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-inner">
               <Cal 
                 calLink="dr-shalinta-tyagi"
-                style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }}
+                style={{ width: "100%", height: "100%", minHeight: "620px", overflow: "scroll" }}
                 config={{ layout: 'month_view' }}
               />
             </div>
@@ -99,104 +152,108 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map/Location Section */}
+      {/* Drop Us a Note Form (From M - Contact Us.pdf) */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-serif font-bold text-soft-brown">
-                Visit Our Clinic
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-peach/20 via-white to-soft-pink/20 rounded-3xl p-8 md:p-12 border border-peach/30 shadow-sm">
+            <div className="text-center mb-8">
+              <h2 className="font-serif text-3xl font-bold text-soft-brown mb-2">
+                Drop Us a Note and We'll Get in Touch
               </h2>
-              <p className="text-lg text-warm-gray leading-relaxed">
-                Located in the heart of Toronto, our clinic offers a warm, welcoming environment 
-                designed specifically for maternal wellness. We're easily accessible by public 
-                transit and offer convenient parking.
+              <p className="text-sm text-warm-gray">
+                Have questions about our Dai-Maa care, in-home physiotherapy packages, or custom queries? Leave your details below.
               </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="h-6 w-6 text-soft-brown mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-soft-brown">Address</h3>
-                    <p className="text-warm-gray">123 Wellness Avenue<br />Toronto, ON M5V 2K1</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <Clock className="h-6 w-6 text-soft-brown mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-soft-brown">Clinic Hours</h3>
-                    <div className="text-warm-gray">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                      <p>Saturday: 9:00 AM - 2:00 PM</p>
-                      <p>Sunday: Closed</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-sage-beige p-6 rounded-2xl">
-                <h3 className="font-semibold text-soft-brown mb-3">What to Bring</h3>
-                <ul className="space-y-2 text-warm-gray">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-soft-brown" />
-                    <span>Valid health card and photo ID</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-soft-brown" />
-                    <span>Insurance information (if applicable)</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-soft-brown" />
-                    <span>Comfortable clothing for movement</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-soft-brown" />
-                    <span>Any relevant medical reports</span>
-                  </li>
-                </ul>
-              </div>
             </div>
 
-            <div className="relative">
-              <div className="bg-gradient-to-br from-soft-pink to-peach p-8 rounded-2xl shadow-xl">
-                <div className="bg-white p-6 rounded-xl text-center">
-                  <MapPin className="h-16 w-16 text-soft-brown mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-soft-brown mb-2">Easy to Find</h3>
-                  <p className="text-warm-gray mb-4">
-                    Located near major transit lines with convenient street parking available.
-                  </p>
-                  <p className="text-sm text-warm-gray">
-                    <strong>TTC:</strong> St. Andrew Station (5 min walk)<br />
-                    <strong>Parking:</strong> Street parking and nearby lots
-                  </p>
+            {formSubmitted ? (
+              <div className="p-8 text-center bg-white rounded-2xl border border-peach/50 space-y-3">
+                <CheckCircle className="w-12 h-12 text-soft-brown mx-auto" />
+                <h3 className="font-serif text-2xl font-bold text-soft-brown">Thank You for Reaching Out!</h3>
+                <p className="text-sm text-warm-gray max-w-md mx-auto">
+                  We have received your message. Dr. Shalinta Tyagi or our clinic team will contact you shortly via phone or email.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-soft-brown mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Mehak Sharma"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-soft-brown/40 bg-white text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-soft-brown mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="e.g. mehak@example.com"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-soft-brown/40 bg-white text-sm"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="absolute -top-4 -right-4 bg-white p-4 rounded-full shadow-lg">
-                <Heart className="h-8 w-8 text-soft-brown" />
-              </div>
-            </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-soft-brown mb-2">
+                    Phone Number (with WhatsApp preferred)
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+91 98765 43210"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-soft-brown/40 bg-white text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-soft-brown mb-2">
+                    Comment or Inquiry
+                  </label>
+                  <textarea
+                    name="comment"
+                    rows={4}
+                    value={formData.comment}
+                    onChange={handleInputChange}
+                    placeholder="Tell us about your requirements (e.g. lactation assistance, postnatal rehab at home, Dai-Maa care...)"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-soft-brown/40 bg-white text-sm"
+                  />
+                </div>
+
+                <div className="text-center pt-2">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center px-8 py-3.5 bg-soft-brown text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-opacity-90 shadow-md transition-transform hover:-translate-y-0.5"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Note
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Emergency Contact */}
-      <section className="py-16 bg-soft-brown">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-serif font-bold text-white mb-4">
-            Need Immediate Assistance?
-          </h2>
-          <p className="text-peach mb-6">
-            For urgent concerns or same-day appointments, please call directly.
-          </p>
-          <a
-            href="tel:+14165550123"
-            className="inline-flex items-center px-8 py-3 bg-white text-soft-brown font-semibold rounded-full hover:bg-opacity-90 transition-colors duration-300"
-          >
-            <Phone className="h-5 w-5 mr-2" />
-            Call (416) 555-0123
-          </a>
-        </div>
+      {/* Clinic & Company Entity Footer Note */}
+      <section className="py-12 bg-sage-beige/30 border-t border-peach/30 text-center text-xs text-warm-gray">
+        <p className="font-semibold text-soft-brown">Wenvite Wellness Private Limited</p>
+        <p className="mt-1">Building A Reliable Ecosystem For Postnatal Care for Mothers with Utmost Compassion</p>
+        <p className="mt-1">Gurgaon • Delhi NCR, India</p>
       </section>
     </div>
   );

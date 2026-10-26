@@ -1,118 +1,215 @@
 import React from 'react';
-import { Award, Heart, Users, BookOpen } from 'lucide-react';
+import { Award, Heart, BookOpen, Clock, CheckCircle, Shield, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
-  const qualifications = [
-    'Certified Prenatal & Postnatal Exercise Specialist',
-    'Licensed Pelvic Floor Physical Therapist',
-    'Certified Lactation Consultant (IBCLC)',
-    'Certified Birth Doula',
-    'Masters in Exercise Science'
+  const credentials = [
+    {
+      title: "Women's Health Physiotherapist",
+      desc: "Specialized in pelvic floor rehabilitation, posture correction, and musculoskeletal recovery.",
+      icon: Award
+    },
+    {
+      title: "Childbirth Educator (Lamaze)",
+      desc: "Certified through Lamaze International, guiding parents through physiological birth preparation.",
+      icon: BookOpen
+    },
+    {
+      title: "Hypnobirthing Educator",
+      desc: "Certified by the Hypnobirthing Institute for deep relaxation and fear-release techniques.",
+      icon: Sparkles
+    },
+    {
+      title: "Lactation Counsellor",
+      desc: "Expert guidance for latching, gentle positioning, milk supply optimization, and breastfeeding comfort.",
+      icon: Heart
+    },
+    {
+      title: "Postnatal Rehab Specialist",
+      desc: "Dedicated to helping newly delivered mothers overcome physical discomforts and abdominal separation.",
+      icon: Shield
+    },
+    {
+      title: "16+ Years Clinical Experience",
+      desc: "Over 16 years of dedicated practice supporting hundreds of mothers throughout pregnancy and beyond.",
+      icon: Clock
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-beige to-white">
+    <div className="min-h-screen bg-gradient-to-b from-sage-beige/40 via-white to-sage-beige/20 animate-fade-in">
+      {/* Top Banner Notice */}
+      <div className="bg-soft-brown text-white py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+        "Customized guidance for postpartum care tailored to your unique needs and preferences"
+      </div>
+
       {/* Hero Section */}
-      <div className="relative px-4 py-20 sm:px-6 lg:px-8">
+      <div className="relative px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="mb-6 font-serif text-4xl font-bold md:text-6xl text-soft-brown animate-fade-in">
-            About Shalinta
+          <p className="text-sm font-semibold tracking-wider uppercase text-soft-brown mb-2">Founder & Specialist</p>
+          <h1 className="mb-4 font-serif text-4xl font-bold md:text-5xl text-soft-brown">
+            Dr. Shalinta Tyagi
           </h1>
-          <p className="mb-8 text-xl text-warm-gray animate-slide-up">
-            Passionate about empowering mothers through their wellness journey
+          <p className="text-lg md:text-xl text-warm-gray leading-relaxed max-w-2xl mx-auto">
+            Women's Health Physiotherapist, Lamaze & Hypnobirthing Childbirth Educator, and Lactation Counsellor
           </p>
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Founder Profile & Bio */}
       <div className="px-4 pb-20 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="grid items-start grid-cols-1 gap-12 lg:grid-cols-2">
-          {/* Image */}
-          <div className="animate-slide-up">
-            <img
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              alt="Shalinta Tyagi"
-              className="w-full rounded-lg shadow-lg"
-            />
+        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-peach/30">
+          {/* Image Column */}
+          <div className="lg:col-span-5">
+            <div className="relative mx-auto max-w-md">
+              <div className="overflow-hidden rounded-2xl shadow-xl aspect-[4/5] bg-peach/20 border-4 border-white">
+                <img
+                  src="https://images.unsplash.com/photo-1594824813583-059a93649514?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Dr. Shalinta Tyagi"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center space-x-3">
+                <div className="p-2.5 rounded-full bg-soft-pink">
+                  <Award className="w-6 h-6 text-soft-brown" />
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-soft-brown">16+ Years</div>
+                  <div className="text-xs text-warm-gray font-medium">Clinical Experience</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Content */}
-          <div className="animate-slide-up animation-delay-200">
-            <h2 className="mb-6 font-serif text-3xl font-bold text-soft-brown">My Story</h2>
-            <div className="space-y-4 prose prose-lg text-warm-gray">
+          {/* Bio Text Column */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-block px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-soft-brown bg-peach/40 rounded-full">
+              Meet Our Founder
+            </div>
+            <h2 className="font-serif text-3xl font-bold text-soft-brown">
+              Supporting Mothers Through Every Stage of Parenthood
+            </h2>
+            <div className="space-y-4 text-warm-gray text-base md:text-lg leading-relaxed">
               <p>
-                Hi, I'm Shalinta Tyagi, a dedicated Maternal Wellness Instructor with over 8 years 
-                of experience supporting mothers through their pregnancy, postpartum, and beyond. 
-                My journey began when I experienced my own challenges during pregnancy and realized 
-                the gap in comprehensive maternal care.
+                <strong>Dr. Shalinta Tyagi</strong> is a Women's Health Physiotherapist, Childbirth Educator (certified through Lamaze International and the Hypnobirthing Institute), and a certified Lactation Counsellor.
               </p>
               <p>
-                I believe that every mother deserves personalized support that honors both her 
-                physical and emotional needs. Through evidence-based practices and compassionate 
-                care, I help women build strength, confidence, and connection during this 
-                transformative time.
+                She brings over <strong>16 years of hands-on clinical experience</strong> working directly with pregnant and postnatal mothers, guiding them with warmth, empathy, and scientific expertise throughout their pregnancy and new motherhood weeks.
               </p>
               <p>
-                My approach combines my extensive training in pelvic floor therapy, prenatal 
-                fitness, and lactation support with a deep understanding of the unique challenges 
-                modern mothers face.
+                From advising on posture, musculoskeletal alignment, and therapeutic exercises during pregnancy to conducting birth preparation and lactation classes, Dr. Shalinta assists would-be parents at every milestone.
+              </p>
+              <p>
+                As a dedicated <strong>postnatal rehabilitation specialist</strong>, she empowers newly delivered mothers to heal core muscles, resolve pelvic floor issues, and overcome physical and emotional discomforts during the crucial recovery window.
               </p>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-soft-brown">500+</div>
-                <div className="text-warm-gray">Mothers Supported</div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-soft-brown">8</div>
-                <div className="text-warm-gray">Years Experience</div>
-              </div>
+            <div className="pt-4 flex flex-wrap gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-6 py-3 font-semibold text-white transition-colors duration-300 rounded-full bg-soft-brown hover:bg-opacity-90 shadow-md"
+              >
+                Book a Consultation
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center px-6 py-3 font-semibold transition-colors duration-300 border border-soft-brown text-soft-brown rounded-full hover:bg-soft-brown hover:text-white"
+              >
+                Explore Specialized Services
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Qualifications */}
+        {/* Credentials Grid */}
         <div className="mt-20">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 font-serif text-3xl font-bold text-soft-brown">Qualifications & Certifications</h2>
-            <p className="text-xl text-warm-gray">Committed to ongoing education and evidence-based practice</p>
+            <h2 className="mb-4 font-serif text-3xl font-bold text-soft-brown">Areas of Specialization</h2>
+            <p className="text-lg text-warm-gray max-w-2xl mx-auto">
+              Comprehensive clinical qualifications dedicated exclusively to maternal wellness, physiological birth, and postpartum healing.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {qualifications.map((qual, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg shadow-md animate-slide-up" style={{animationDelay: `${index * 100}ms`}}>
-                <Award className="w-8 h-8 mb-4 text-soft-brown" />
-                <h3 className="font-semibold text-soft-brown">{qual}</h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {credentials.map((cred, index) => (
+              <div key={index} className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <cred.icon className="w-8 h-8 mb-4 text-soft-brown" />
+                <h3 className="font-serif text-xl font-semibold text-soft-brown mb-2">{cred.title}</h3>
+                <p className="text-sm text-warm-gray leading-relaxed">{cred.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Philosophy */}
-        <div className="p-8 mt-20 bg-lavender rounded-2xl md:p-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-6 font-serif text-3xl font-bold text-soft-brown">My Philosophy</h2>
-            <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3">
-              <div className="animate-slide-up">
-                <Heart className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-                <h3 className="mb-2 text-xl font-semibold text-soft-brown">Compassionate Care</h3>
-                <p className="text-warm-gray">Every mother's journey is unique and deserves individualized, empathetic support.</p>
+        {/* Our Story / Motherina Ecosystem Section */}
+        <div className="mt-20 bg-white rounded-3xl p-8 md:p-14 shadow-sm border border-peach/30">
+          <div className="max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-3">
+              <p className="text-xs uppercase tracking-widest font-semibold text-soft-brown">Our Story</p>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-soft-brown">
+                Childbirth, Uncertainty, & The Birth of Motherina
+              </h2>
+            </div>
+
+            <div className="prose prose-lg text-warm-gray leading-relaxed space-y-6">
+              <p>
+                One of the most exciting times in a woman's life comes with many unknowns and uncertainties:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div className="flex items-center space-x-3 p-4 bg-sage-beige/30 rounded-xl">
+                  <CheckCircle className="w-5 h-5 text-soft-brown flex-shrink-0" />
+                  <span className="text-sm font-medium text-soft-brown">What is the best for healing my body?</span>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-sage-beige/30 rounded-xl">
+                  <CheckCircle className="w-5 h-5 text-soft-brown flex-shrink-0" />
+                  <span className="text-sm font-medium text-soft-brown">Will I be able to breastfeed my baby?</span>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-sage-beige/30 rounded-xl">
+                  <CheckCircle className="w-5 h-5 text-soft-brown flex-shrink-0" />
+                  <span className="text-sm font-medium text-soft-brown">How will I regain strength & pre-pregnancy fitness?</span>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-sage-beige/30 rounded-xl">
+                  <CheckCircle className="w-5 h-5 text-soft-brown flex-shrink-0" />
+                  <span className="text-sm font-medium text-soft-brown">How can I best support my baby and be a good Mom?</span>
+                </div>
               </div>
-              <div className="animate-slide-up animation-delay-200">
-                <BookOpen className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-                <h3 className="mb-2 text-xl font-semibold text-soft-brown">Evidence-Based</h3>
-                <p className="text-warm-gray">All recommendations are grounded in the latest research and best practices.</p>
+              <p>
+                <strong>That's where Motherina comes in.</strong> During pregnancy and after birth, a mother is constantly researching, reading, and asking family and friends for reassurance. She wants to know what guidance, care, and services she will need for an easy transition into parenthood.
+              </p>
+              <p>
+                Motherina creates an ecosystem where she can attain all the advice, clinical consultations, educational guidance, and specialized therapies she needs—all designed by experienced healthcare professionals and industry veterans.
+              </p>
+              <div className="p-6 bg-peach/20 border-l-4 border-soft-brown rounded-r-2xl my-6">
+                <p className="italic text-soft-brown font-serif text-lg md:text-xl">
+                  "Postpartum is as important as pregnancy—it's about the Mom as much as it's about the baby."
+                </p>
               </div>
-              <div className="animate-slide-up animation-delay-400">
-                <Users className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-                <h3 className="mb-2 text-xl font-semibold text-soft-brown">Holistic Approach</h3>
-                <p className="text-warm-gray">Addressing physical, emotional, and social aspects of maternal wellness.</p>
-              </div>
+              <p>
+                This 40-day postpartum period is a time of profound physical and emotional changes that every mother and baby goes through. Lots of feelings exist simultaneously: she feels attached and longing for space, optimistic and wary, proud and lonely all at once while adjusting to a new way of life and a changed body.
+              </p>
+              <p className="font-medium text-soft-brown">
+                We want women to feel in their hearts and their lives that they are not alone, and that this amazing transformation into becoming a mother is celebrated.
+              </p>
             </div>
           </div>
         </div>
+
+        {/* Vision & Mission */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-8 bg-gradient-to-br from-soft-pink/30 to-peach/20 rounded-3xl border border-peach/30">
+            <h3 className="font-serif text-2xl font-bold text-soft-brown mb-4">Our Vision</h3>
+            <p className="text-warm-gray leading-relaxed text-base md:text-lg">
+              To create a brand and supportive clinical ecosystem that loving mommies trust unconditionally with taking care of them throughout pregnancy and postpartum recovery.
+            </p>
+          </div>
+          <div className="p-8 bg-gradient-to-br from-lavender/30 to-soft-pink/20 rounded-3xl border border-peach/30">
+            <h3 className="font-serif text-2xl font-bold text-soft-brown mb-4">Our Mission</h3>
+            <p className="text-warm-gray leading-relaxed text-base md:text-lg">
+              To change the way new Moms and Babies experience postpartum recovery by providing evidence-based services that help heal the body, connect moms, and offer ongoing clinical support.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   );

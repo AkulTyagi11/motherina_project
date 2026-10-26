@@ -1,164 +1,141 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, ChevronUp, HelpCircle, Baby, Heart, Users, Shield } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle, Baby, Heart, Activity, Calendar } from 'lucide-react';
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<string | null>("0-0");
+
+  const toggleAccordion = (id: string) => {
+    setOpenIndex(prev => prev === id ? null : id);
+  };
 
   const faqCategories = [
     {
-      category: "General Questions",
+      category: "General & Practice Questions",
       icon: HelpCircle,
       color: "bg-soft-pink",
       questions: [
         {
-          question: "What is women's health physiotherapy?",
-          answer: "Women's health physiotherapy is a specialized area of physiotherapy that focuses on the unique health needs of women throughout their lives. This includes pregnancy, childbirth, postpartum recovery, pelvic floor dysfunction, and other women-specific health issues. Our treatments are evidence-based and tailored to each woman's individual needs."
+          question: "Who is Dr. Shalinta Tyagi?",
+          answer: "Dr. Shalinta Tyagi is a Women's Health Physiotherapist, Childbirth Educator certified with Lamaze International and the Hypnobirthing Institute, and a certified Lactation Counsellor. She has over 16 years of clinical experience specializing in pregnancy exercises, birth preparation, lactation difficulties, and postpartum physical rehabilitation."
         },
         {
-          question: "Do I need a referral to see you?",
-          answer: "In Ontario, you do not need a referral to see a physiotherapist. You can book directly with me for an assessment and treatment. However, if you have extended health benefits, check with your insurance provider as some may require a doctor's referral for coverage."
+          question: "Where are consultations conducted?",
+          answer: "We offer both Online Consultations (conducted worldwide via Google Meet, Zoom, and video tools) and In-Person Consultations (available at selected partner clinics in Gurgaon, or through comfortable home visits across Delhi NCR)."
         },
         {
-          question: "What should I expect during my first visit?",
-          answer: "Your first visit will include a comprehensive assessment where we'll discuss your health history, current concerns, and goals. I'll perform appropriate physical examinations and work with you to develop a personalized treatment plan. Please wear comfortable clothing and bring any relevant medical information."
+          question: "Do I need a doctor's prescription or referral to consult?",
+          answer: "No referral is needed to schedule an initial consultation or educational session with Dr. Shalinta Tyagi. If you have medical reports, ultrasound scans, or notes from your gynecologist/obstetrician, you are welcome to share them so we can tailor your care plan seamlessly."
         },
         {
-          question: "How many sessions will I need?",
-          answer: "The number of sessions varies depending on your individual condition and goals. Some women see improvement in 2-3 sessions, while others may benefit from ongoing care over several months. I'll regularly assess your progress and adjust your treatment plan accordingly."
+          question: "How do I book an appointment?",
+          answer: "You can book directly through the live Cal.com scheduler on our Contact page. Select your consultation type, pick an available slot that works for you, and you will receive instant confirmation."
         }
       ]
     },
     {
-      category: "Pregnancy & Prenatal Care",
-      icon: Baby,
+      category: "Lactation & Postpartum Recovery",
+      icon: Heart,
       color: "bg-peach",
       questions: [
         {
-          question: "When should I start prenatal physiotherapy?",
-          answer: "You can start prenatal physiotherapy at any stage of pregnancy. Many women benefit from starting in the first trimester to address early symptoms like nausea, fatigue, and postural changes. However, it's never too late to start, and care can be beneficial right up until delivery."
+          question: "When should I seek help from a lactation counsellor?",
+          answer: "You should seek lactation guidance whenever breastfeeding feels painful, if you experience tender/cracked nipples, latching difficulty, concerns about insufficient or overabundant milk supply, or if you need guidance on pumping and returning to work. Early guidance prevents nipple trauma and ensures your baby gains weight smoothly."
         },
         {
-          question: "Is exercise safe during pregnancy?",
-          answer: "Yes, exercise is generally safe and beneficial during pregnancy when done appropriately. I'll assess your individual situation and create a safe, effective exercise program tailored to your pregnancy stage, fitness level, and any specific conditions you may have."
+          question: "What is the 'first 40 days' recovery concept at Motherina?",
+          answer: "The initial 40 days following childbirth are a critical physiological and emotional transition. While family attention naturally shifts to the baby, the mother's body has undergone a major physical event and hormonal drop. Motherina's ecosystem provides dedicated postnatal physical rehab, pelvic health support, diet planning, and emotional reassurance so the mother heals comprehensively."
         },
         {
-          question: "Can physiotherapy help with pregnancy-related pain?",
-          answer: "Absolutely! Physiotherapy can effectively address common pregnancy discomforts including back pain, pelvic girdle pain, sciatica, carpal tunnel syndrome, and other musculoskeletal issues. Treatment includes manual therapy, exercise, and education on posture and movement."
+          question: "Can physiotherapy help with postpartum urinary incontinence?",
+          answer: "Yes, absolutely. Bladder leaks when coughing, sneezing, or jumping are common after pregnancy due to stretched pelvic floor muscles and hormonal changes, but they are treatable. Targeted pelvic floor physical therapy and biofeedback exercises safely restore muscular continence and pelvic stability."
         },
         {
-          question: "What is pelvic floor preparation for birth?",
-          answer: "Pelvic floor preparation involves learning about your pelvic floor muscles, how to coordinate them during labor, and techniques for optimal positioning during delivery. This can help reduce the risk of complications and support recovery after birth."
+          question: "What is Diastasis Recti and how is it repaired?",
+          answer: "Diastasis Recti is the separation of the rectus abdominis muscles caused by the expanding uterus during pregnancy. Traditional crunches or sit-ups can worsen this separation. Dr. Shalinta evaluates the depth and width of separation and prescribes safe, progressive transverse abdominis and core rehabilitation exercises."
         }
       ]
     },
     {
-      category: "Postpartum Care",
-      icon: Heart,
+      category: "Birth Education & Therapies",
+      icon: Baby,
       color: "bg-lavender",
       questions: [
         {
-          question: "When can I start postpartum physiotherapy?",
-          answer: "You can start gentle postpartum physiotherapy as early as 24-48 hours after delivery, depending on your birth experience. We'll begin with breathing exercises and gentle movement, gradually progressing as you heal. A comprehensive assessment is typically done around 6-8 weeks postpartum."
+          question: "What is Lamaze Childbirth Education?",
+          answer: "Lamaze education empowers expecting parents with evidence-based information about normal physiological labor, stages of birth, non-pharmacological pain management, relaxation techniques, and partner support strategies so you approach labor with confidence rather than anxiety."
         },
         {
-          question: "Will physiotherapy help with postpartum depression or anxiety?",
-          answer: "While I don't treat mental health conditions directly, exercise and physical activity can be beneficial for mood and well-being. If you're experiencing postpartum depression or anxiety, please speak with your healthcare provider. I can work as part of your support team to help you feel stronger physically."
+          question: "How do therapeutic postpartum massages differ from regular salon massages?",
+          answer: "Postpartum therapeutic massages are tailored specifically for a healing postpartum body. They focus on relieving musculoskeletal fatigue from nursing, increasing circulation, promoting lymphatic drainage of pregnancy fluid retention (edema), and lowering stress hormones without putting undue pressure on healing abdominal or pelvic areas."
         },
         {
-          question: "How long does postpartum recovery take?",
-          answer: "Recovery is highly individual and depends on factors like your birth experience, overall health, and whether this is your first baby. Physical recovery typically takes 6-12 months, but some changes may be permanent. The good news is that targeted physiotherapy can help optimize your recovery at any stage."
-        },
-        {
-          question: "Can I exercise while breastfeeding?",
-          answer: "Yes, exercise is safe while breastfeeding and can actually help with energy levels and mood. I'll help you choose appropriate exercises and timing around feeding schedules. It's important to stay well-hydrated and fuel your body properly for both exercise and milk production."
-        }
-      ]
-    },
-    {
-      category: "Specific Treatments",
-      icon: Users,
-      color: "bg-sage-beige",
-      questions: [
-        {
-          question: "What is pelvic floor dysfunction?",
-          answer: "Pelvic floor dysfunction occurs when the muscles of the pelvic floor don't work properly. This can result in incontinence, pelvic organ prolapse, pelvic pain, or difficulty with bowel movements. These issues are common but not normal, and physiotherapy can be very effective in treating them."
-        },
-        {
-          question: "How effective is pelvic floor physiotherapy?",
-          answer: "Pelvic floor physiotherapy is highly effective, with success rates of 80-90% for many conditions. Research shows it's often more effective than surgery for certain conditions and should be the first line of treatment for most pelvic floor issues."
-        },
-        {
-          question: "What is diastasis recti and can it be treated?",
-          answer: "Diastasis recti is the separation of the abdominal muscles that commonly occurs during pregnancy. With proper assessment and targeted exercises, the function of the abdominal wall can be significantly improved, even if some separation remains."
-        },
-        {
-          question: "Do you provide internal pelvic floor examinations?",
-          answer: "Yes, internal pelvic floor examinations are often an important part of assessment and treatment. However, this is always done with your full consent, and I'll explain the process thoroughly. Some conditions can be effectively treated without internal examination if you prefer."
+          question: "What are Dai-Maa / Japa care services?",
+          answer: "Our Dai-Maa and Japa services provide trained, compassionate in-home care for the mother and newborn during the 40-day postpartum window. They assist with infant handling, bathing, diapering, traditional mother massages, and customized daycare support across Gurgaon and Delhi NCR."
         }
       ]
     }
   ];
 
-  const toggleQuestion = (categoryIndex: number, questionIndex: number) => {
-    const globalIndex = categoryIndex * 1000 + questionIndex;
-    setOpenIndex(openIndex === globalIndex ? null : globalIndex);
-  };
-
   return (
-    <div className="animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-sage-beige/30 via-white to-sage-beige/20 animate-fade-in">
+      {/* Top Tagline Banner */}
+      <div className="bg-soft-brown text-white py-2 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+        "Customized guidance for postpartum care tailored to your unique needs and preferences"
+      </div>
+
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-sage-beige to-peach">
-        <div className="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
-          <div className="animate-slide-up">
-            <h1 className="mb-6 font-serif text-4xl font-bold md:text-5xl text-soft-brown">
-              Frequently Asked Questions
-            </h1>
-            <p className="max-w-3xl mx-auto text-xl leading-relaxed text-warm-gray">
-              Find answers to common questions about maternal wellness, women's health physiotherapy, 
-              and what to expect from your care journey.
-            </p>
-          </div>
+      <section className="pt-16 pb-12 bg-gradient-to-br from-sage-beige/40 to-peach/30 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-bold uppercase tracking-widest text-soft-brown mb-2">Got Questions?</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-soft-brown mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
+            Everything you need to know about our maternal health consultations, pelvic floor therapy, lactation counselling, and home visits with Dr. Shalinta Tyagi.
+          </p>
         </div>
       </section>
 
-      {/* FAQ Content */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
-          {faqCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-12">
-              <div className="flex items-center mb-8 space-x-3">
-                <div className={`${category.color} p-3 rounded-xl`}>
-                  <category.icon className="w-6 h-6 text-soft-brown" />
+      {/* Accordion Categories */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          {faqCategories.map((cat, catIdx) => (
+            <div key={catIdx} className="space-y-4">
+              <div className="flex items-center space-x-3 pb-2 border-b border-peach/50">
+                <div className={`p-2 rounded-xl ${cat.color} text-soft-brown`}>
+                  <cat.icon className="w-5 h-5" />
                 </div>
-                <h2 className="font-serif text-2xl font-bold text-soft-brown">{category.category}</h2>
+                <h2 className="font-serif text-2xl font-bold text-soft-brown">{cat.category}</h2>
               </div>
 
-              <div className="space-y-4">
-                {category.questions.map((faq, questionIndex) => {
-                  const globalIndex = categoryIndex * 1000 + questionIndex;
-                  const isOpen = openIndex === globalIndex;
+              <div className="space-y-3">
+                {cat.questions.map((q, qIdx) => {
+                  const itemId = `${catIdx}-${qIdx}`;
+                  const isOpen = openIndex === itemId;
 
                   return (
                     <div
-                      key={questionIndex}
-                      className="overflow-hidden transition-shadow duration-300 border border-gray-200 rounded-xl hover:shadow-md"
+                      key={qIdx}
+                      className="bg-white rounded-2xl border border-peach/30 overflow-hidden shadow-sm transition-all"
                     >
                       <button
-                        onClick={() => toggleQuestion(categoryIndex, questionIndex)}
-                        className="flex items-center justify-between w-full px-6 py-4 text-left transition-colors duration-300 bg-white hover:bg-sage-beige"
+                        onClick={() => toggleAccordion(itemId)}
+                        className="w-full text-left px-6 py-5 flex items-center justify-between space-x-4 hover:bg-peach/10 transition-colors"
                       >
-                        <h3 className="pr-4 text-lg font-semibold text-soft-brown">{faq.question}</h3>
+                        <span className="font-serif font-bold text-base md:text-lg text-soft-brown">
+                          {q.question}
+                        </span>
                         {isOpen ? (
-                          <ChevronUp className="flex-shrink-0 w-5 h-5 text-soft-brown" />
+                          <ChevronUp className="w-5 h-5 text-soft-brown flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="flex-shrink-0 w-5 h-5 text-soft-brown" />
+                          <ChevronDown className="w-5 h-5 text-warm-gray flex-shrink-0" />
                         )}
                       </button>
-                      
+
                       {isOpen && (
-                        <div className="px-6 pb-4 bg-sage-beige animate-slide-up">
-                          <p className="leading-relaxed text-warm-gray">{faq.answer}</p>
+                        <div className="px-6 pb-6 pt-1 text-sm md:text-base text-warm-gray leading-relaxed border-t border-gray-100">
+                          {q.answer}
                         </div>
                       )}
                     </div>
@@ -167,74 +144,21 @@ const FAQ = () => {
               </div>
             </div>
           ))}
-        </div>
-      </section>
 
-      {/* Still Have Questions Section */}
-      <section className="py-20 bg-gradient-to-r from-soft-pink to-peach">
-        <div className="max-w-4xl px-4 mx-auto text-center sm:px-6 lg:px-8">
-          <div className="p-8 bg-white bg-opacity-80 rounded-3xl md:p-12">
-            <Shield className="w-16 h-16 mx-auto mb-6 text-soft-brown" />
-            <h2 className="mb-6 font-serif text-3xl font-bold md:text-4xl text-soft-brown">
-              Still Have Questions?
-            </h2>
-            <p className="max-w-2xl mx-auto mb-8 text-lg text-warm-gray">
-              I'm here to address any concerns or questions you may have about your maternal wellness journey. 
-              Don't hesitate to reach out for personalized guidance.
+          {/* Bottom Card */}
+          <div className="p-8 bg-white rounded-3xl border border-peach/40 text-center shadow-sm space-y-4">
+            <h3 className="font-serif text-2xl font-bold text-soft-brown">Have a Specific Health Question?</h3>
+            <p className="text-sm text-warm-gray max-w-xl mx-auto leading-relaxed">
+              Dr. Shalinta Tyagi is here to answer any questions regarding your postpartum recovery, pelvic health, or breastfeeding journey.
             </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <div className="pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-3 font-semibold text-white transition-colors duration-300 rounded-full bg-soft-brown hover:bg-opacity-90"
+                className="inline-flex items-center px-8 py-3 bg-soft-brown text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-opacity-90 shadow-md"
               >
+                <Calendar className="w-4 h-4 mr-2" />
                 Schedule a Consultation
               </Link>
-              <a
-                href="tel:+14165550123"
-                className="inline-flex items-center px-8 py-3 font-semibold transition-colors duration-300 border-2 rounded-full border-soft-brown text-soft-brown hover:bg-soft-brown hover:text-white"
-              >
-                Call for Quick Questions
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Section */}
-      <section className="py-20 bg-white">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 font-serif text-3xl font-bold text-soft-brown">
-              Additional Resources
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg text-warm-gray">
-              Helpful information to support your maternal wellness journey.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="p-6 text-center bg-sage-beige rounded-2xl">
-              <Baby className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-              <h3 className="mb-3 text-xl font-semibold text-soft-brown">Pregnancy Guidelines</h3>
-              <p className="text-warm-gray">
-                Evidence-based recommendations for safe exercise and activity during pregnancy.
-              </p>
-            </div>
-            
-            <div className="p-6 text-center bg-soft-pink rounded-2xl">
-              <Heart className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-              <h3 className="mb-3 text-xl font-semibold text-soft-brown">Postpartum Recovery</h3>
-              <p className="text-warm-gray">
-                Timeline and expectations for physical recovery after childbirth.
-              </p>
-            </div>
-            
-            <div className="p-6 text-center bg-lavender rounded-2xl">
-              <Users className="w-12 h-12 mx-auto mb-4 text-soft-brown" />
-              <h3 className="mb-3 text-xl font-semibold text-soft-brown">Support Networks</h3>
-              <p className="text-warm-gray">
-                Local resources and support groups for mothers in the Toronto area.
-              </p>
             </div>
           </div>
         </div>

@@ -1,78 +1,64 @@
-import { Star, Quote, Heart, Baby, Users } from 'lucide-react';
+import React from 'react';
+import { Star, Quote, Heart, Baby, Users, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Emily Johnson",
-      service: "Women's Health Physiotherapy",
-      text: "Shalinta's expertise and compassionate care made my recovery journey so much smoother. After struggling with pelvic floor issues postpartum, she helped me regain my confidence and strength. Her personalized approach and genuine care made all the difference.",
+      name: "Poonam, 31 Years",
+      location: "Gurgaon",
+      service: "Lactation & Postnatal Healing",
+      text: "Dr. Shalinta Tyagi's lactation consultation was an absolute blessing. In the initial two weeks after delivery, I had painful latching and felt hopeless. Within just two sessions, she adjusted our positioning, relieved the breast engorgement, and gave me complete confidence. I cannot recommend her enough!",
       rating: 5,
-      image: "https://images.pexels.com/photos/3985254/pexels-photo-3985254.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Lisa Chen",
-      service: "Childbirth Education",
-      text: "The childbirth education classes were incredibly informative and helped me feel prepared and confident for delivery. Shalinta's calm presence and thorough explanations eased my anxieties. I felt empowered and ready for birth.",
+      name: "Deepali, 34 Years",
+      location: "Delhi NCR",
+      service: "Pelvic Floor & Incontinence Physiotherapy",
+      text: "After delivering my second child, I was suffering from bladder leaks whenever I sneezed or laughed. Dr. Shalinta's postpartum physiotherapy and pelvic rehabilitation program restored my core and pelvic stability completely within 6 weeks. She is so thorough, gentle, and medically knowledgeable.",
       rating: 5,
-      image: "https://images.pexels.com/photos/1556663/pexels-photo-1556663.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Amanda Rodriguez",
-      service: "Perinatal Fitness",
-      text: "Professional, knowledgeable, and truly caring. Shalinta goes above and beyond for her patients. The prenatal fitness program helped me stay strong throughout pregnancy and bounce back quickly after delivery.",
+      name: "Mehak, 29 Years",
+      location: "Online Consultation",
+      service: "Baby Blues & Emotional Support",
+      text: "The first 40 days after giving birth were deeply overwhelming. I felt like nobody understood the emotional roller coaster I was on. Dr. Shalinta gave me compassionate, focused care and practical steps to heal emotionally while nursing my newborn. Her sessions truly saved my mental wellness.",
       rating: 5,
-      image: "https://images.pexels.com/photos/3984340/pexels-photo-3984340.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Jennifer Kim",
-      service: "Lactation Counselling",
-      text: "I was struggling with breastfeeding and felt overwhelmed. Shalinta's lactation counselling gave me the tools and confidence I needed. Her patient guidance made all the difference in our nursing journey.",
+      name: "Ritika M., 32 Years",
+      location: "Gurgaon",
+      service: "Postpartum Rehabilitation & Diastasis Recti",
+      text: "I had significant abdominal separation (diastasis recti) and chronic lower back pain. Dr. Shalinta designed a custom exercise progression for me at home. My core is stronger now than it was before pregnancy, and my posture has improved dramatically.",
       rating: 5,
-      image: "https://images.pexels.com/photos/3985244/pexels-photo-3985244.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Shalinta Mitchell",
-      service: "Hypnobirthing",
-      text: "The hypnobirthing course transformed my perspective on childbirth. I went from being terrified to feeling excited and confident. The relaxation techniques were invaluable during labor.",
+      name: "Ananya S., 28 Years",
+      location: "Delhi NCR",
+      service: "Lamaze Childbirth Preparation & Hypnobirthing",
+      text: "Dr. Shalinta's birth education classes took away all the fear I had about labor. The breathing techniques and partner support exercises she taught my husband and me made my delivery a calm and empowering experience.",
       rating: 5,
-      image: "https://images.pexels.com/photos/5473184/pexels-photo-5473184.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      name: "Maria Santos",
-      service: "Women's Health Physiotherapy",
-      text: "After my second baby, I thought incontinence was just something I'd have to live with. Shalinta proved me wrong! Her treatment plan was effective and her approach was so understanding and professional.",
+      name: "Sneha G., 33 Years",
+      location: "Gurgaon",
+      service: "Postnatal Yoga & Therapeutic Massage",
+      text: "The combination of postpartum therapeutic massage and restorative yoga sessions helped relieve all the muscle stiffness from night-time nursing and sleep deprivation. It gave me the self-care break I desperately needed.",
       rating: 5,
-      image: "https://images.pexels.com/photos/1560159/pexels-photo-1560159.jpeg?auto=compress&cs=tinysrgb&w=400"
-    },
-    {
-      name: "Rachel Thompson",
-      service: "Perinatal Fitness",
-      text: "Shalinta helped me maintain my fitness throughout pregnancy and guided my return to exercise postpartum. Her knowledge of the female body and pregnancy-specific needs is exceptional.",
-      rating: 5,
-      image: "https://images.pexels.com/photos/5407206/pexels-photo-5407206.jpeg?auto=compress&cs=tinysrgb&w=400"
-    },
-    {
-      name: "Priya Patel",
-      service: "Childbirth Education",
-      text: "As a first-time mom, I had so many questions and fears. Shalinta's childbirth education classes addressed everything with patience and expertise. I felt so much more prepared and confident.",
-      rating: 5,
-      image: "https://images.pexels.com/photos/3985254/pexels-photo-3985254.jpeg?auto=compress&cs=tinysrgb&w=400"
-    },
-    {
-      name: "Nicole Brown",
-      service: "Hypnobirthing",
-      text: "The hypnobirthing techniques Shalinta taught me helped me have the calm, positive birth experience I dreamed of. I highly recommend her classes to any expecting mother.",
-      rating: 5,
-      image: "https://images.pexels.com/photos/1556663/pexels-photo-1556663.jpeg?auto=compress&cs=tinysrgb&w=400"
+      image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=compress&cs=tinysrgb&w=400"
     }
   ];
 
   const stats = [
     {
       icon: Heart,
-      number: "500+",
-      label: "Happy Mothers"
+      number: "1000+",
+      label: "Mothers Supported"
     },
     {
       icon: Star,
@@ -80,45 +66,48 @@ const Testimonials = () => {
       label: "Average Rating"
     },
     {
-      icon: Baby,
-      number: "98%",
-      label: "Success Rate"
+      icon: Award,
+      number: "16+",
+      label: "Years Experience"
     },
     {
-      icon: Users,
-      number: "8+",
-      label: "Years Experience"
+      icon: Baby,
+      number: "100%",
+      label: "Dedicated Care"
     }
   ];
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in bg-gradient-to-b from-sage-beige/30 via-white to-sage-beige/20 min-h-screen">
+      {/* Top Banner Notice */}
+      <div className="bg-soft-brown text-white py-2 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+        "Customized guidance for postpartum care tailored to your unique needs and preferences"
+      </div>
+
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-sage-beige to-peach">
+      <section className="pt-16 pb-12 bg-gradient-to-br from-sage-beige/40 to-peach/30">
         <div className="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
-          <div className="animate-slide-up">
-            <h1 className="mb-6 font-serif text-4xl font-bold md:text-5xl text-soft-brown">
-              What Mothers Are Saying
-            </h1>
-            <p className="max-w-3xl mx-auto text-xl leading-relaxed text-warm-gray">
-              Real experiences from the wonderful women I've had the privilege to support 
-              throughout their maternal wellness journey.
-            </p>
-          </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-soft-brown mb-2">Patient Feedback</p>
+          <h1 className="mb-4 font-serif text-4xl font-bold md:text-5xl text-soft-brown">
+            Stories of Maternal Healing
+          </h1>
+          <p className="max-w-3xl mx-auto text-base md:text-lg text-warm-gray leading-relaxed">
+            Real experiences from mothers who found strength, physical healing, and peace of mind under the clinical care of <strong>Dr. Shalinta Tyagi</strong>.
+          </p>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white border-b border-peach/30">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 p-4 mx-auto mb-4 rounded-full bg-soft-pink">
-                  <stat.icon className="w-8 h-8 mx-auto text-soft-brown" />
+                <div className="p-3 bg-peach/30 rounded-2xl w-fit mx-auto mb-3 text-soft-brown">
+                  <stat.icon className="w-6 h-6" />
                 </div>
-                <div className="mb-2 text-3xl font-bold text-soft-brown">{stat.number}</div>
-                <div className="text-warm-gray">{stat.label}</div>
+                <div className="text-3xl font-bold text-soft-brown font-serif">{stat.number}</div>
+                <div className="text-xs uppercase tracking-wider font-semibold text-warm-gray mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -126,85 +115,61 @@ const Testimonials = () => {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="py-20 bg-sage-beige">
+      <section className="py-16">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="p-6 transition-all duration-300 bg-white shadow-lg rounded-2xl hover:shadow-xl hover:-translate-y-2"
+                className="p-8 bg-white rounded-3xl border border-peach/30 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
               >
-                <div className="flex items-center mb-4">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    <span className="px-3 py-1 bg-peach/30 text-soft-brown rounded-full text-[11px] font-bold uppercase tracking-wider">
+                      {testimonial.location}
+                    </span>
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-warm-gray italic">
+                    "{testimonial.text}"
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-gray-100 flex items-center space-x-3">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="object-cover w-12 h-12 mr-4 rounded-full"
+                    className="w-11 h-11 rounded-full object-cover border-2 border-peach"
                   />
                   <div>
-                    <h3 className="font-semibold text-soft-brown">{testimonial.name}</h3>
-                    <p className="text-sm text-warm-gray">{testimonial.service}</p>
+                    <h3 className="font-serif font-bold text-soft-brown text-sm">{testimonial.name}</h3>
+                    <p className="text-[11px] text-warm-gray">{testimonial.service}</p>
                   </div>
-                </div>
-
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-
-                <div className="relative">
-                  <Quote className="absolute w-8 h-8 text-soft-pink -top-2 -left-2" />
-                  <p className="pl-6 leading-relaxed text-warm-gray">
-                    {testimonial.text}
-                  </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Featured Testimonial */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
-          <div className="p-8 text-center bg-gradient-to-r from-soft-pink to-peach rounded-3xl md:p-12">
-            <Quote className="w-16 h-16 mx-auto mb-6 text-soft-brown" />
-            <blockquote className="mb-8 font-serif text-2xl leading-relaxed md:text-3xl text-soft-brown">
-              "Shalinta didn't just treat my symptoms; she empowered me to understand my body and 
-              take control of my health. Her holistic approach and genuine care transformed my 
-              entire experience of motherhood."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-4">
-              <img
-                src="https://images.pexels.com/photos/3985254/pexels-photo-3985254.jpeg?auto=compress&cs=tinysrgb&w=100"
-                alt="Featured testimonial"
-                className="object-cover w-16 h-16 rounded-full"
-              />
-              <div className="text-left">
-                <div className="text-lg font-semibold text-soft-brown">Catherine Walsh</div>
-                <div className="text-warm-gray">Mother of Two</div>
-              </div>
+          {/* Bottom CTA */}
+          <div className="mt-16 text-center bg-white p-8 md:p-12 rounded-3xl border border-peach/30 max-w-3xl mx-auto shadow-sm space-y-4">
+            <h2 className="font-serif text-3xl font-bold text-soft-brown">Ready to Experience Personalized Postpartum Care?</h2>
+            <p className="text-sm text-warm-gray leading-relaxed">
+              Book a consultation with Dr. Shalinta Tyagi online worldwide or at our partner clinics and home visits in Gurgaon/Delhi NCR.
+            </p>
+            <div className="pt-2">
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-3.5 bg-soft-brown text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-opacity-90 shadow-md"
+              >
+                Schedule Your Session Today
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-soft-brown">
-        <div className="max-w-4xl px-4 mx-auto text-center sm:px-6 lg:px-8">
-          <h2 className="mb-6 font-serif text-3xl font-bold text-white md:text-4xl">
-            Join Our Community of Empowered Mothers
-          </h2>
-          <p className="max-w-2xl mx-auto mb-8 text-xl text-peach">
-            Experience the same compassionate, expert care that has helped hundreds of women 
-            feel confident and supported throughout their maternal journey.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center px-10 py-4 text-lg font-semibold transition-all duration-300 transform bg-white rounded-full text-soft-brown hover:bg-opacity-90 hover:shadow-xl hover:-translate-y-1"
-          >
-            Start Your Journey Today
-          </Link>
         </div>
       </section>
     </div>
