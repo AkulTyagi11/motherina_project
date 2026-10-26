@@ -11,12 +11,17 @@ export default {
     },
     extend: {
       colors: {
-        'peach': '#FFEEE6',
-        'soft-pink': '#F8D7DA',
-        'sage-beige': '#F5F1EB',
-        'lavender': '#E8E5F3',  
-        'warm-gray': '#6B7280',
-        'soft-brown': '#92796A',
+        'peach': '#FFF1E8',
+        'soft-pink': '#FCE4EC',
+        'motherina-pink': '#E8317A',
+        'motherina-pink-dark': '#C91D65',
+        'motherina-pink-light': '#FDF2F7',
+        'sage-beige': '#F8F5F0',
+        'lavender': '#EFEBF8',  
+        'warm-gray': '#374151', // Crisp charcoal for high readability on light backgrounds
+        'warm-gray-muted': '#6B7280',
+        'soft-brown': '#43281C', // Rich deep espresso brown with high contrast
+        'soft-brown-muted': '#6A4A3A',
       },
       fontFamily: {
         'serif': ['Georgia', 'serif'],
@@ -44,4 +49,3 @@ export default {
   },
   plugins: [],
 };
-

@@ -189,20 +189,20 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-beige/30 via-white to-sage-beige/20 animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-sage-beige/40 via-white to-sage-beige/30 animate-fade-in">
       {/* Top Banner Notice */}
-      <div className="bg-soft-brown text-white py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+      <div className="bg-gradient-to-r from-motherina-pink to-motherina-pink-dark text-white py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide shadow-sm">
         "Customized guidance for postpartum care tailored to your unique needs and preferences"
       </div>
 
       {/* Hero Section */}
       <section className="pt-16 pb-12 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
-          <p className="text-xs uppercase tracking-widest font-semibold text-soft-brown">Clinical Services & Specialized Care</p>
+          <p className="text-xs uppercase tracking-widest font-bold text-motherina-pink">Clinical Services & Specialized Care</p>
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-soft-brown">
             Comprehensive Maternal Wellness Services
           </h1>
-          <p className="text-lg text-warm-gray leading-relaxed">
+          <p className="text-base sm:text-lg text-warm-gray leading-relaxed font-normal">
             Led by <strong>Dr. Shalinta Tyagi</strong> (16+ years clinical experience), Motherina provides evidence-based clinical consultations, therapeutic rehabilitation, and birth preparation designed for the mother's complete physical and emotional recovery.
           </p>
         </div>
@@ -219,10 +219,10 @@ const Services = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
                 activeTab === tab.id
-                  ? 'bg-soft-brown text-white shadow-md'
-                  : 'bg-white text-warm-gray hover:bg-peach/30 border border-gray-200'
+                  ? 'bg-motherina-pink text-white shadow-md'
+                  : 'bg-white text-warm-gray hover:text-motherina-pink hover:bg-peach border border-peach/80'
               }`}
             >
               {tab.label}
@@ -237,28 +237,28 @@ const Services = () => {
         {/* SECTION 1: CONSULTATION SERVICES */}
         {(activeTab === 'all' || activeTab === 'consultation') && (
           <section className="space-y-8">
-            <div className="border-b border-peach/50 pb-4">
-              <span className="text-xs uppercase tracking-widest font-bold text-soft-brown">Clinical Expertise</span>
+            <div className="border-b border-peach pb-4">
+              <span className="text-xs uppercase tracking-widest font-bold text-motherina-pink">Clinical Expertise</span>
               <h2 className="font-serif text-3xl font-bold text-soft-brown">Consultation Services</h2>
-              <p className="text-warm-gray mt-1">Personalized clinical evaluations and treatment plans with Dr. Shalinta Tyagi.</p>
+              <p className="text-warm-gray mt-1 text-sm sm:text-base">Personalized clinical evaluations and treatment plans with Dr. Shalinta Tyagi.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {consultationServices.map((service) => (
-                <div key={service.id} className="bg-white rounded-3xl p-8 border border-peach/30 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div key={service.id} className="bg-white rounded-3xl p-8 border border-peach/70 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <div className="p-3 rounded-2xl bg-peach/30 text-soft-brown">
+                      <div className="p-3.5 rounded-2xl bg-peach text-motherina-pink">
                         <service.icon className="w-6 h-6" />
                       </div>
                       <div>
                         <h3 className="font-serif text-2xl font-bold text-soft-brown">{service.title}</h3>
-                        <p className="text-xs font-semibold text-warm-gray uppercase tracking-wider">{service.subtitle}</p>
+                        <p className="text-xs font-bold text-motherina-pink uppercase tracking-wider">{service.subtitle}</p>
                       </div>
                     </div>
 
                     <p className="text-warm-gray text-sm leading-relaxed">{service.description}</p>
-                    <p className="text-warm-gray text-sm leading-relaxed italic bg-sage-beige/20 p-3 rounded-xl border-l-2 border-soft-brown">
+                    <p className="text-warm-gray text-sm leading-relaxed italic bg-peach/30 p-3.5 rounded-xl border-l-4 border-motherina-pink">
                       {service.details}
                     </p>
 
@@ -267,7 +267,7 @@ const Services = () => {
                       <ul className="space-y-1.5">
                         {service.highlights.map((h, i) => (
                           <li key={i} className="flex items-start space-x-2 text-xs md:text-sm text-warm-gray">
-                            <CheckCircle className="w-4 h-4 text-soft-brown flex-shrink-0 mt-0.5" />
+                            <CheckCircle className="w-4 h-4 text-motherina-pink flex-shrink-0 mt-0.5" />
                             <span>{h}</span>
                           </li>
                         ))}
@@ -275,20 +275,20 @@ const Services = () => {
                     </div>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                  <div className="pt-6 mt-6 border-t border-peach/40 flex items-center justify-between">
                     <div className="space-y-1">
-                      <div className="flex items-center space-x-1.5 text-xs text-warm-gray">
-                        <Clock className="w-3.5 h-3.5 text-soft-brown" />
+                      <div className="flex items-center space-x-1.5 text-xs text-warm-gray font-medium">
+                        <Clock className="w-3.5 h-3.5 text-motherina-pink" />
                         <span>{service.duration}</span>
                       </div>
-                      <div className="flex items-center space-x-1.5 text-xs text-warm-gray">
-                        <Video className="w-3.5 h-3.5 text-soft-brown" />
+                      <div className="flex items-center space-x-1.5 text-xs text-warm-gray font-medium">
+                        <Video className="w-3.5 h-3.5 text-motherina-pink" />
                         <span>Online / In-Person</span>
                       </div>
                     </div>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-bold text-white bg-soft-brown hover:bg-opacity-90 shadow-sm"
+                      className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-bold text-white bg-motherina-pink hover:bg-motherina-pink-dark shadow-sm transition-all"
                     >
                       Book Consultation
                       <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -303,41 +303,41 @@ const Services = () => {
         {/* SECTION 2: THERAPY SERVICES */}
         {(activeTab === 'all' || activeTab === 'therapy') && (
           <section className="space-y-8">
-            <div className="border-b border-peach/50 pb-4">
-              <span className="text-xs uppercase tracking-widest font-bold text-soft-brown">Physical Healing</span>
+            <div className="border-b border-peach pb-4">
+              <span className="text-xs uppercase tracking-widest font-bold text-motherina-pink">Physical Healing</span>
               <h2 className="font-serif text-3xl font-bold text-soft-brown">Therapy Services</h2>
-              <p className="text-warm-gray mt-1">Holistic body rehabilitation, pelvic toning, and restorative therapies.</p>
+              <p className="text-warm-gray mt-1 text-sm sm:text-base">Holistic body rehabilitation, pelvic toning, and restorative therapies.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {therapyServices.map((service) => (
-                <div key={service.id} className="bg-white rounded-3xl p-8 border border-peach/30 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div key={service.id} className="bg-white rounded-3xl p-8 border border-peach/70 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
                   <div className="space-y-4">
-                    <div className="p-3 w-fit rounded-2xl bg-lavender/40 text-soft-brown">
+                    <div className="p-3.5 w-fit rounded-2xl bg-lavender text-motherina-pink">
                       <service.icon className="w-6 h-6" />
                     </div>
                     <h3 className="font-serif text-2xl font-bold text-soft-brown">{service.title}</h3>
-                    <p className="text-xs font-semibold text-warm-gray uppercase tracking-wider">{service.subtitle}</p>
+                    <p className="text-xs font-bold text-motherina-pink uppercase tracking-wider">{service.subtitle}</p>
                     <p className="text-warm-gray text-sm leading-relaxed">{service.description}</p>
-                    <p className="text-warm-gray text-sm leading-relaxed bg-peach/10 p-3 rounded-xl">
+                    <p className="text-warm-gray text-sm leading-relaxed bg-peach/30 p-3.5 rounded-xl border-l-2 border-motherina-pink">
                       {service.details}
                     </p>
 
                     <ul className="space-y-1.5 pt-2">
                       {service.highlights.map((h, i) => (
                         <li key={i} className="flex items-start space-x-2 text-xs text-warm-gray">
-                          <CheckCircle className="w-3.5 h-3.5 text-soft-brown flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="w-3.5 h-3.5 text-motherina-pink flex-shrink-0 mt-0.5" />
                           <span>{h}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-xs font-medium text-warm-gray">{service.duration}</span>
+                  <div className="pt-6 mt-6 border-t border-peach/40 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-motherina-pink">{service.duration}</span>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-soft-brown hover:bg-opacity-90 shadow-sm"
+                      className="inline-flex items-center px-5 py-2 rounded-full text-xs font-bold text-white bg-motherina-pink hover:bg-motherina-pink-dark shadow-sm transition-all"
                     >
                       Book Session
                     </Link>
@@ -351,38 +351,39 @@ const Services = () => {
         {/* SECTION 3: EDUCATIONAL SERVICES */}
         {(activeTab === 'all' || activeTab === 'education') && (
           <section className="space-y-8">
-            <div className="border-b border-peach/50 pb-4">
-              <span className="text-xs uppercase tracking-widest font-bold text-soft-brown">Knowledge & Reassurance</span>
+            <div className="border-b border-peach pb-4">
+              <span className="text-xs uppercase tracking-widest font-bold text-motherina-pink">Knowledge & Reassurance</span>
               <h2 className="font-serif text-3xl font-bold text-soft-brown">Educational Services & Guides</h2>
-              <p className="text-warm-gray mt-1">Understanding the profound physical changes of the postpartum phase.</p>
+              <p className="text-warm-gray mt-1 text-sm sm:text-base">Understanding the profound physical changes of the postpartum phase.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {educationalServices.map((edu, idx) => (
-                <div key={idx} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div key={idx} className="bg-white rounded-3xl p-7 border border-peach/70 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-soft-brown bg-peach/30 rounded-full">
+                    <span className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-motherina-pink bg-motherina-pink/10 rounded-full">
                       {edu.tag}
                     </span>
-                    <BookOpen className="w-4 h-4 text-soft-brown" />
+                    <BookOpen className="w-4 h-4 text-motherina-pink" />
                   </div>
                   <h3 className="font-serif text-xl font-bold text-soft-brown mb-1">{edu.title}</h3>
-                  <p className="text-xs font-semibold text-warm-gray mb-3">{edu.subtitle}</p>
+                  <p className="text-xs font-bold text-motherina-pink mb-3">{edu.subtitle}</p>
                   <p className="text-sm text-warm-gray leading-relaxed">{edu.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-peach/30 via-lavender/30 to-soft-pink/30 p-8 rounded-3xl text-center space-y-4">
+            <div className="bg-gradient-to-r from-peach via-soft-pink/50 to-motherina-pink/20 p-8 rounded-3xl text-center space-y-4 border border-peach">
               <h3 className="font-serif text-2xl font-bold text-soft-brown">Having Questions About Your Postpartum Symptoms?</h3>
               <p className="text-warm-gray text-sm md:text-base max-w-2xl mx-auto">
                 Every woman's postpartum recovery is unique. Dr. Shalinta Tyagi offers dedicated educational and clinical consultation sessions to answer every question you have in a safe, compassionate setting.
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 font-semibold text-white bg-soft-brown rounded-full hover:bg-opacity-90 shadow-md text-sm"
+                className="inline-flex items-center px-7 py-3 font-semibold text-white bg-motherina-pink hover:bg-motherina-pink-dark rounded-full shadow-md text-sm transition-all"
               >
                 Schedule an Educational Consult
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
           </section>
@@ -391,16 +392,16 @@ const Services = () => {
         {/* SECTION 4: DAI-MAA SERVICES */}
         {(activeTab === 'all' || activeTab === 'daimaa') && (
           <section className="space-y-8">
-            <div className="border-b border-peach/50 pb-4">
-              <span className="text-xs uppercase tracking-widest font-bold text-soft-brown">40-Day Care Ecosystem</span>
+            <div className="border-b border-peach pb-4">
+              <span className="text-xs uppercase tracking-widest font-bold text-motherina-pink">40-Day Care Ecosystem</span>
               <h2 className="font-serif text-3xl font-bold text-soft-brown">Dai-Maa & Japa Postnatal Care</h2>
-              <p className="text-warm-gray mt-1">Professional, traditional, and trained home assistance for mother and newborn.</p>
+              <p className="text-warm-gray mt-1 text-sm sm:text-base">Professional, traditional, and trained home assistance for mother and newborn.</p>
             </div>
 
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-peach/30 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-8 md:p-12 border border-peach/70 shadow-sm space-y-8">
               <div className="max-w-3xl space-y-4">
                 <p className="text-warm-gray text-base md:text-lg leading-relaxed">
-                  Our Japa and Nannies/Daimaas are professionally trained and take joy in taking care of the mom and the baby in the initial 40 days of delivery. They are experienced in addressing every need of a newborn and a new mother during this recovery phase post-delivery.
+                  Our Japa and Nannies/Daimaas are professionally trained and take joy in caring for the mom and the baby in the initial 40 days of delivery. They are experienced in addressing every need of a newborn and a new mother during this recovery phase post-delivery.
                 </p>
                 <p className="text-warm-gray text-base md:text-lg leading-relaxed">
                   They provide skilled massages to new mothers to ease stiffness and pain in their bodies. They are also well-trained to take full responsibility for newborn care with patience, trust, and positive energy—from changing diapers and bathing to clothing and soothing.
@@ -409,8 +410,8 @@ const Services = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
                 {daimaaServices.map((d, i) => (
-                  <div key={i} className="p-6 bg-sage-beige/20 rounded-2xl border border-peach/20 space-y-3">
-                    <div className="p-3 bg-white w-fit rounded-xl text-soft-brown shadow-sm">
+                  <div key={i} className="p-6 bg-peach/30 rounded-2xl border border-peach/60 space-y-3">
+                    <div className="p-3 bg-white w-fit rounded-xl text-motherina-pink shadow-sm">
                       <d.icon className="w-5 h-5" />
                     </div>
                     <h4 className="font-serif text-lg font-bold text-soft-brown">{d.title}</h4>
@@ -419,14 +420,14 @@ const Services = () => {
                 ))}
               </div>
 
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-peach/20 p-6 rounded-2xl">
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-peach/40 p-6 rounded-2xl border border-peach/70">
                 <div>
-                  <h4 className="font-bold text-soft-brown">Customizable Daycare & In-Home Packages</h4>
-                  <p className="text-xs text-warm-gray">Rates and schedules are customized to your family's needs in Gurgaon and Delhi NCR.</p>
+                  <h4 className="font-bold text-soft-brown text-base">Customizable Daycare & In-Home Packages</h4>
+                  <p className="text-xs text-warm-gray mt-1">Rates and schedules are customized to your family's needs in Gurgaon and Delhi NCR.</p>
                 </div>
                 <Link
                   to="/contact"
-                  className="px-6 py-2.5 bg-soft-brown text-white text-xs font-bold rounded-full hover:bg-opacity-90 shadow-sm flex-shrink-0"
+                  className="px-6 py-2.5 bg-motherina-pink hover:bg-motherina-pink-dark text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-sm flex-shrink-0 transition-all"
                 >
                   Inquire for Dai-Maa Care
                 </Link>

@@ -16,42 +16,49 @@ import {
   ShoppingBag, 
   FileText 
 } from 'lucide-react';
+import FemaleAvatar from '../components/FemaleAvatar';
 
 const Home = () => {
   const whatWeDo = [
     {
       icon: Heart,
       title: "Consultation",
+      subtitle: "Clinical Assessment",
       description: "Diet, Breastfeeding / Lactation, Emotional Wellness & Physical Assessment.",
       link: "/services"
     },
     {
       icon: BookOpen,
       title: "Education",
+      subtitle: "Birth Preparation",
       description: "Postpartum recovery guides, birth preparation classes, seminars & downloads.",
       link: "/services"
     },
     {
       icon: Sparkles,
       title: "Therapies",
+      subtitle: "Rehabilitation",
       description: "Self Care, Postpartum Therapeutic Massages, Postnatal Yoga & Physiotherapy.",
       link: "/services"
     },
     {
       icon: Baby,
       title: "Dai-Maa Care",
+      subtitle: "40-Day Support",
       description: "Trained 40-Day postpartum birth assistance, newborn handling & mother care.",
       link: "/services"
     },
     {
       icon: ShoppingBag,
       title: "Maternal Products",
+      subtitle: "Essentials",
       description: "Curated mother care, baby development essentials & postpartum fitness gear.",
       link: "/services"
     },
     {
       icon: FileText,
       title: "Health Check-Up",
+      subtitle: "Recovery Tracking",
       description: "Physical recovery assessments, pelvic examinations, and recovery monitoring.",
       link: "/services"
     }
@@ -81,32 +88,32 @@ const Home = () => {
   return (
     <div className="animate-fade-in">
       {/* Top Tagline Banner */}
-      <div className="bg-soft-brown text-white py-2 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+      <div className="bg-gradient-to-r from-motherina-pink to-motherina-pink-dark text-white py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide shadow-sm">
         "Customized guidance for postpartum care tailored to your unique needs and preferences"
       </div>
 
       {/* Hero Section */}
-      <section className="relative flex items-center min-h-[85vh] bg-gradient-to-br from-sage-beige/50 via-peach/30 to-soft-pink/30">
+      <section className="relative flex items-center min-h-[85vh] bg-gradient-to-br from-sage-beige/60 via-peach/40 to-motherina-pink/10">
         <div className="relative px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12">
             <div className="space-y-6 lg:col-span-7">
-              <div className="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-soft-brown bg-white/80 backdrop-blur-sm rounded-full border border-peach/50">
+              <div className="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-motherina-pink bg-white/90 backdrop-blur-sm rounded-full border border-motherina-pink/30 shadow-sm">
                 Dr. Shalinta Tyagi • 16+ Years Clinical Excellence
               </div>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-soft-brown">
-                One Stop for <span className="text-soft-pink">Postnatal Mother Care</span>
+                One Stop for <span className="text-motherina-pink">Postnatal Mother Care</span>
               </h1>
-              <p className="font-serif text-xl sm:text-2xl text-soft-brown/90 italic">
+              <p className="font-serif text-xl sm:text-2xl text-soft-brown font-semibold italic">
                 From Birth Preparation to Birth Recovery & Beyond
               </p>
-              <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-warm-gray">
+              <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-warm-gray font-normal">
                 Personalized maternal wellness, women's health physiotherapy, lactation counselling, and birth education designed to support, heal, and celebrate the mother's body and mind.
               </p>
               
               <div className="flex flex-col gap-4 sm:flex-row pt-2">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-full bg-soft-brown hover:bg-opacity-90 shadow-lg hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-full bg-motherina-pink hover:bg-motherina-pink-dark shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
                   Book Consultation
@@ -121,18 +128,18 @@ const Home = () => {
               </div>
 
               {/* Stats badges */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-peach/40 max-w-lg">
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-peach max-w-lg">
                 <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown">16+</div>
-                  <div className="text-xs text-warm-gray font-medium">Years Experience</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown font-serif">16+</div>
+                  <div className="text-xs text-motherina-pink font-semibold uppercase tracking-wider">Years Experience</div>
                 </div>
                 <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown">1000+</div>
-                  <div className="text-xs text-warm-gray font-medium">Mothers Healed</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown font-serif">1000+</div>
+                  <div className="text-xs text-motherina-pink font-semibold uppercase tracking-wider">Mothers Healed</div>
                 </div>
                 <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown">100%</div>
-                  <div className="text-xs text-warm-gray font-medium">Personalized Care</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-soft-brown font-serif">100%</div>
+                  <div className="text-xs text-motherina-pink font-semibold uppercase tracking-wider">Dedicated Care</div>
                 </div>
               </div>
             </div>
@@ -147,14 +154,14 @@ const Home = () => {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-peach/30 max-w-xs">
+                <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-peach/50 max-w-xs">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2.5 rounded-full bg-soft-pink">
-                      <Heart className="w-5 h-5 text-soft-brown" />
+                    <div className="p-2.5 rounded-full bg-motherina-pink/10 text-motherina-pink">
+                      <Heart className="w-5 h-5 fill-current" />
                     </div>
                     <div>
                       <p className="text-xs font-bold text-soft-brown">Dr. Shalinta Tyagi</p>
-                      <p className="text-[11px] text-warm-gray">Women's Health PT & Lactation Specialist</p>
+                      <p className="text-[11px] text-motherina-pink font-medium">Women's Health PT & Lactation Specialist</p>
                     </div>
                   </div>
                 </div>
@@ -165,18 +172,20 @@ const Home = () => {
       </section>
 
       {/* Instant Help Banner */}
-      <section className="bg-gradient-to-r from-soft-pink/40 via-peach/30 to-lavender/40 py-8 px-4 text-center border-y border-peach/40">
+      <section className="bg-gradient-to-r from-soft-pink/60 via-peach to-motherina-pink/15 py-8 px-4 text-center border-y border-peach/60">
         <div className="max-w-4xl mx-auto space-y-3">
-          <h3 className="font-serif text-2xl font-bold text-soft-brown">Need Instant Help?</h3>
-          <p className="text-warm-gray text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-xs font-bold uppercase tracking-widest text-motherina-pink">Compassionate Support</p>
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-soft-brown">Need Instant Help?</h3>
+          <p className="text-warm-gray text-sm md:text-base max-w-2xl mx-auto font-normal">
             You're not alone in your postpartum journey. We're here to provide the personalized consultation and clinical support you need to heal and recover.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
-              className="inline-flex items-center px-6 py-2.5 bg-soft-brown text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-opacity-90 shadow-md"
+              className="inline-flex items-center px-7 py-3 bg-motherina-pink hover:bg-motherina-pink-dark text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md transition-all hover:shadow-lg"
             >
               Book Consultation Now
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
         </div>
@@ -186,7 +195,7 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="mb-14 text-center max-w-3xl mx-auto">
-            <p className="text-xs font-bold uppercase tracking-widest text-soft-brown mb-2">Our Capabilities</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-motherina-pink mb-2">Our Capabilities</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-soft-brown mb-4">
               What We Do
             </h2>
@@ -199,19 +208,24 @@ const Home = () => {
             {whatWeDo.map((item, index) => (
               <div
                 key={index}
-                className="p-8 transition-all duration-300 bg-white border border-peach/20 rounded-3xl shadow-sm hover:shadow-md hover:-translate-y-1 group flex flex-col justify-between"
+                className="p-8 transition-all duration-300 bg-white border border-peach/60 rounded-3xl shadow-sm hover:shadow-md hover:-translate-y-1 group flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="p-3.5 bg-peach/30 rounded-2xl w-fit text-soft-brown group-hover:scale-110 transition-transform">
-                    <item.icon className="w-6 h-6" />
+                  <div className="flex items-center justify-between">
+                    <div className="p-3.5 bg-peach rounded-2xl w-fit text-motherina-pink group-hover:scale-110 transition-transform">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-motherina-pink bg-motherina-pink/10 px-3 py-1 rounded-full">
+                      {item.subtitle}
+                    </span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-soft-brown">{item.title}</h3>
+                  <h3 className="font-serif text-2xl font-bold text-soft-brown">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-warm-gray">{item.description}</p>
                 </div>
-                <div className="pt-6 mt-4 border-t border-gray-100">
+                <div className="pt-6 mt-4 border-t border-peach/30">
                   <Link
                     to={item.link}
-                    className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-soft-brown group-hover:text-soft-pink transition-colors"
+                    className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-motherina-pink hover:text-motherina-pink-dark transition-colors"
                   >
                     Learn More <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                   </Link>
@@ -223,17 +237,17 @@ const Home = () => {
       </section>
 
       {/* Core Philosophy Section: Why Motherina? */}
-      <section className="py-20 bg-gradient-to-br from-sage-beige/30 via-peach/20 to-white">
+      <section className="py-20 bg-gradient-to-br from-sage-beige/40 via-peach/30 to-white">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-8 md:p-14 border border-peach/40 shadow-sm">
+          <div className="bg-white rounded-3xl p-8 md:p-14 border border-peach/60 shadow-sm">
             <div className="grid items-center grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-block px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-soft-brown bg-soft-pink/40 rounded-full">
+                <div className="inline-block px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-motherina-pink bg-motherina-pink/10 rounded-full">
                   Our Core Philosophy
                 </div>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-soft-brown leading-tight">
                   Why Motherina?<br />
-                  <span className="text-soft-pink">Because We Understand That SHE is as Important as HER BABY</span>
+                  <span className="text-motherina-pink">Because We Understand That SHE is as Important as HER BABY</span>
                 </h2>
                 <div className="space-y-4 text-warm-gray text-base leading-relaxed">
                   <p>
@@ -242,24 +256,24 @@ const Home = () => {
                   <p>
                     During this period of uncertainty, most mothers and those around her unintentionally forget that her body, like the baby, has undergone a rebirth, and all of her emotions and feelings are valid too. <strong>She is just as important as her baby.</strong>
                   </p>
-                  <p>
+                  <p className="font-serif italic text-soft-brown text-lg">
                     At Motherina, we understand that she has a thousand questions racing through her mind:
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    <div className="p-3 bg-peach/20 rounded-xl text-xs font-medium text-soft-brown flex items-center space-x-2">
-                      <CheckCircle className="w-4 h-4 text-soft-brown flex-shrink-0" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <div className="p-3.5 bg-peach/40 rounded-xl text-xs font-semibold text-soft-brown flex items-center space-x-2 border border-peach/60">
+                      <CheckCircle className="w-4 h-4 text-motherina-pink flex-shrink-0" />
                       <span>"When will I get back my pre-pregnancy body?"</span>
                     </div>
-                    <div className="p-3 bg-peach/20 rounded-xl text-xs font-medium text-soft-brown flex items-center space-x-2">
-                      <CheckCircle className="w-4 h-4 text-soft-brown flex-shrink-0" />
+                    <div className="p-3.5 bg-peach/40 rounded-xl text-xs font-semibold text-soft-brown flex items-center space-x-2 border border-peach/60">
+                      <CheckCircle className="w-4 h-4 text-motherina-pink flex-shrink-0" />
                       <span>"Am I lactating enough for my baby?"</span>
                     </div>
-                    <div className="p-3 bg-peach/20 rounded-xl text-xs font-medium text-soft-brown flex items-center space-x-2">
-                      <CheckCircle className="w-4 h-4 text-soft-brown flex-shrink-0" />
+                    <div className="p-3.5 bg-peach/40 rounded-xl text-xs font-semibold text-soft-brown flex items-center space-x-2 border border-peach/60">
+                      <CheckCircle className="w-4 h-4 text-motherina-pink flex-shrink-0" />
                       <span>"How do I heal my pelvic floor and core?"</span>
                     </div>
-                    <div className="p-3 bg-peach/20 rounded-xl text-xs font-medium text-soft-brown flex items-center space-x-2">
-                      <CheckCircle className="w-4 h-4 text-soft-brown flex-shrink-0" />
+                    <div className="p-3.5 bg-peach/40 rounded-xl text-xs font-semibold text-soft-brown flex items-center space-x-2 border border-peach/60">
+                      <CheckCircle className="w-4 h-4 text-motherina-pink flex-shrink-0" />
                       <span>"Am I being a good mother?"</span>
                     </div>
                   </div>
@@ -270,7 +284,7 @@ const Home = () => {
               </div>
 
               <div className="lg:col-span-5">
-                <div className="relative mx-auto max-w-sm overflow-hidden rounded-2xl shadow-xl aspect-square border-4 border-white">
+                <div className="relative mx-auto max-w-sm overflow-hidden rounded-3xl shadow-xl aspect-square border-4 border-white">
                   <img
                     src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Mother and Baby Wellness"
@@ -288,26 +302,28 @@ const Home = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div className="relative">
-              <div className="overflow-hidden shadow-xl rounded-3xl aspect-[4/3] max-w-md mx-auto">
+              <div className="overflow-hidden shadow-xl rounded-3xl aspect-[4/3] max-w-md mx-auto border-4 border-peach/40">
                 <img
                   src="https://images.unsplash.com/photo-1594824813583-059a93649514?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Dr. Shalinta Tyagi"
                   className="object-cover w-full h-full object-top"
                 />
               </div>
-              <div className="absolute p-5 bg-white shadow-xl -bottom-6 -right-6 rounded-2xl border border-peach/30 max-w-xs">
+              <div className="absolute p-5 bg-white shadow-xl -bottom-6 -right-6 rounded-2xl border border-peach/60 max-w-xs">
                 <div className="flex items-center space-x-3">
-                  <Award className="w-8 h-8 text-soft-brown" />
+                  <div className="p-2.5 rounded-full bg-motherina-pink/10 text-motherina-pink">
+                    <Award className="w-7 h-7" />
+                  </div>
                   <div>
-                    <div className="font-serif font-bold text-soft-brown">Dr. Shalinta Tyagi</div>
-                    <div className="text-xs text-warm-gray">16+ Yrs Postnatal Rehab Specialist</div>
+                    <div className="font-serif font-bold text-soft-brown text-base">Dr. Shalinta Tyagi</div>
+                    <div className="text-xs text-motherina-pink font-semibold">16+ Yrs Postnatal Rehab Specialist</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6">
-              <span className="text-xs uppercase tracking-widest font-bold text-soft-brown">Clinical Leadership</span>
+              <span className="text-xs uppercase tracking-widest font-bold text-motherina-pink">Clinical Leadership</span>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-soft-brown">
                 Meet Dr. Shalinta Tyagi
               </h2>
@@ -321,14 +337,14 @@ const Home = () => {
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center px-6 py-3 font-semibold text-white rounded-full bg-soft-brown hover:bg-opacity-90 shadow-md text-sm"
+                  className="inline-flex items-center px-6 py-3 font-semibold text-white rounded-full bg-motherina-pink hover:bg-motherina-pink-dark shadow-md text-sm transition-all hover:shadow-lg"
                 >
                   Read Full Bio & Story
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center px-6 py-3 font-semibold border border-soft-brown text-soft-brown rounded-full hover:bg-soft-brown hover:text-white text-sm"
+                  className="inline-flex items-center px-6 py-3 font-semibold border-2 border-soft-brown text-soft-brown rounded-full hover:bg-soft-brown hover:text-white text-sm transition-colors"
                 >
                   Book with Dr. Shalinta
                 </Link>
@@ -338,32 +354,36 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-sage-beige/30">
+      {/* Testimonials Preview */}
+      <section className="py-20 bg-sage-beige/40">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="mb-14 text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-widest text-motherina-pink">Real Experiences</span>
             <h2 className="mb-3 font-serif text-3xl md:text-4xl font-bold text-soft-brown">
               What Mothers Are Saying
             </h2>
             <p className="text-base text-warm-gray">
-              Heartfelt experiences from mothers guided and cared for by Dr. Shalinta Tyagi.
+              Heartfelt feedback from mothers guided and cared for by Dr. Shalinta Tyagi.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="p-8 bg-white rounded-3xl border border-peach/30 shadow-sm flex flex-col justify-between space-y-4">
+              <div key={idx} className="p-8 bg-white rounded-3xl border border-peach/60 shadow-sm flex flex-col justify-between space-y-4">
                 <div>
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
                     ))}
                   </div>
                   <p className="text-sm leading-relaxed text-warm-gray italic">"{t.text}"</p>
                 </div>
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="font-serif font-bold text-soft-brown text-base">{t.name}</div>
-                  <div className="text-xs text-warm-gray">{t.role}</div>
+                <div className="pt-4 border-t border-peach/30 flex items-center space-x-3.5">
+                  <FemaleAvatar className="w-11 h-11" />
+                  <div>
+                    <div className="font-serif font-bold text-soft-brown text-base">{t.name}</div>
+                    <div className="text-xs text-motherina-pink font-medium">{t.role}</div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -372,7 +392,7 @@ const Home = () => {
           <div className="mt-12 text-center">
             <Link
               to="/testimonials"
-              className="inline-flex items-center px-8 py-3 font-semibold rounded-full bg-white text-soft-brown hover:bg-peach/30 border border-peach/50 shadow-sm text-sm"
+              className="inline-flex items-center px-8 py-3.5 font-semibold rounded-full bg-white text-soft-brown hover:bg-peach border border-peach shadow-sm text-sm transition-colors"
             >
               Read More Stories
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -384,8 +404,11 @@ const Home = () => {
       {/* CTA Footer Section */}
       <section className="py-20 bg-soft-brown text-white text-center">
         <div className="max-w-4xl px-4 mx-auto space-y-6">
+          <p className="text-xs uppercase tracking-widest font-bold text-motherina-pink bg-white/10 px-4 py-1.5 rounded-full inline-block">
+            Take The Next Step
+          </p>
           <h2 className="font-serif text-3xl md:text-4xl font-bold">
-            Take the First Step Toward Gentle Postpartum Recovery
+            Begin Your Gentle Postpartum Recovery Today
           </h2>
           <p className="text-peach text-base md:text-lg max-w-2xl mx-auto">
             Online consultations available worldwide via Zoom & Google Meet, plus in-person consultations in Gurgaon & Delhi NCR.
@@ -393,7 +416,7 @@ const Home = () => {
           <div>
             <Link
               to="/contact"
-              className="inline-flex items-center px-10 py-4 text-base font-bold transition-all duration-300 rounded-full bg-white text-soft-brown hover:bg-peach shadow-xl"
+              className="inline-flex items-center px-10 py-4 text-base font-bold transition-all duration-300 rounded-full bg-motherina-pink hover:bg-motherina-pink-dark text-white shadow-xl hover:scale-105"
             >
               <Calendar className="w-5 h-5 mr-2" />
               Schedule Your Consultation

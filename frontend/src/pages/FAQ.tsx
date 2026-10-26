@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, ChevronUp, HelpCircle, Baby, Heart, Activity, Calendar } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle, Baby, Heart, Calendar } from 'lucide-react';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<string | null>("0-0");
@@ -13,7 +13,6 @@ const FAQ = () => {
     {
       category: "General & Practice Questions",
       icon: HelpCircle,
-      color: "bg-soft-pink",
       questions: [
         {
           question: "Who is Dr. Shalinta Tyagi?",
@@ -36,7 +35,6 @@ const FAQ = () => {
     {
       category: "Lactation & Postpartum Recovery",
       icon: Heart,
-      color: "bg-peach",
       questions: [
         {
           question: "When should I seek help from a lactation counsellor?",
@@ -59,7 +57,6 @@ const FAQ = () => {
     {
       category: "Birth Education & Therapies",
       icon: Baby,
-      color: "bg-lavender",
       questions: [
         {
           question: "What is Lamaze Childbirth Education?",
@@ -78,20 +75,20 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-beige/30 via-white to-sage-beige/20 animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-sage-beige/40 via-white to-sage-beige/30 animate-fade-in">
       {/* Top Tagline Banner */}
-      <div className="bg-soft-brown text-white py-2 px-4 text-center text-xs md:text-sm font-medium tracking-wide">
+      <div className="bg-gradient-to-r from-motherina-pink to-motherina-pink-dark text-white py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide shadow-sm">
         "Customized guidance for postpartum care tailored to your unique needs and preferences"
       </div>
 
       {/* Hero Section */}
-      <section className="pt-16 pb-12 bg-gradient-to-br from-sage-beige/40 to-peach/30 text-center">
+      <section className="pt-16 pb-12 bg-gradient-to-br from-sage-beige/50 via-peach/40 to-motherina-pink/10 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-widest text-soft-brown mb-2">Got Questions?</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-motherina-pink mb-2">Got Questions?</p>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-soft-brown mb-4">
             Frequently Asked Questions
           </h1>
-          <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto font-normal">
             Everything you need to know about our maternal health consultations, pelvic floor therapy, lactation counselling, and home visits with Dr. Shalinta Tyagi.
           </p>
         </div>
@@ -102,8 +99,8 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {faqCategories.map((cat, catIdx) => (
             <div key={catIdx} className="space-y-4">
-              <div className="flex items-center space-x-3 pb-2 border-b border-peach/50">
-                <div className={`p-2 rounded-xl ${cat.color} text-soft-brown`}>
+              <div className="flex items-center space-x-3 pb-2 border-b border-peach">
+                <div className="p-2.5 rounded-2xl bg-peach text-motherina-pink">
                   <cat.icon className="w-5 h-5" />
                 </div>
                 <h2 className="font-serif text-2xl font-bold text-soft-brown">{cat.category}</h2>
@@ -117,24 +114,26 @@ const FAQ = () => {
                   return (
                     <div
                       key={qIdx}
-                      className="bg-white rounded-2xl border border-peach/30 overflow-hidden shadow-sm transition-all"
+                      className={`bg-white rounded-2xl border transition-all ${
+                        isOpen ? 'border-motherina-pink/40 shadow-sm' : 'border-peach/70 hover:border-peach'
+                      }`}
                     >
                       <button
                         onClick={() => toggleAccordion(itemId)}
-                        className="w-full text-left px-6 py-5 flex items-center justify-between space-x-4 hover:bg-peach/10 transition-colors"
+                        className="w-full text-left px-6 py-5 flex items-center justify-between space-x-4 hover:bg-peach/20 rounded-2xl transition-colors"
                       >
                         <span className="font-serif font-bold text-base md:text-lg text-soft-brown">
                           {q.question}
                         </span>
                         {isOpen ? (
-                          <ChevronUp className="w-5 h-5 text-soft-brown flex-shrink-0" />
+                          <ChevronUp className="w-5 h-5 text-motherina-pink flex-shrink-0" />
                         ) : (
                           <ChevronDown className="w-5 h-5 text-warm-gray flex-shrink-0" />
                         )}
                       </button>
 
                       {isOpen && (
-                        <div className="px-6 pb-6 pt-1 text-sm md:text-base text-warm-gray leading-relaxed border-t border-gray-100">
+                        <div className="px-6 pb-6 pt-2 text-sm md:text-base text-warm-gray leading-relaxed border-t border-peach/40">
                           {q.answer}
                         </div>
                       )}
@@ -146,7 +145,10 @@ const FAQ = () => {
           ))}
 
           {/* Bottom Card */}
-          <div className="p-8 bg-white rounded-3xl border border-peach/40 text-center shadow-sm space-y-4">
+          <div className="p-8 bg-white rounded-3xl border border-peach/70 text-center shadow-sm space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-motherina-pink bg-motherina-pink/10 px-3 py-1 rounded-full">
+              Personalized Guidance
+            </span>
             <h3 className="font-serif text-2xl font-bold text-soft-brown">Have a Specific Health Question?</h3>
             <p className="text-sm text-warm-gray max-w-xl mx-auto leading-relaxed">
               Dr. Shalinta Tyagi is here to answer any questions regarding your postpartum recovery, pelvic health, or breastfeeding journey.
@@ -154,7 +156,7 @@ const FAQ = () => {
             <div className="pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-3 bg-soft-brown text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-opacity-90 shadow-md"
+                className="inline-flex items-center px-8 py-3 bg-motherina-pink hover:bg-motherina-pink-dark text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md transition-all hover:shadow-lg"
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 Schedule a Consultation
